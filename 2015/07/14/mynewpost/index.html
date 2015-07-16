@@ -3,60 +3,27 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Git 版本控制流程 | renkaixin@github.com</title>
+  <title>Git分支规划与命名的最佳实践 | renkaixin@github.com</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在使用Git进行版本控制，定义开发生命周期中的每个阶段分别对应的branch
+  <meta name="description" content="在使用Git进行版本控制时，伴随开发生命周期，需要维护很多的分支，如何创建这些分支并明确命名，是一个头疼的问题，本文总结了Git最常用分支的名称和使用场景。
 
-master HEAD代码与稳定的生产环境代码同步
-develop HEAD代码代表了下一版本release的最新代码更改
-feature 新功能开发分支
-release 版本发布分支
-hotfix 线上问题修改分支
-
-各分支详解
-
-
-branch
-type
-branch off from
-merge back int">
+master 主要分支 - 主线分支，HEAD指向的代码与稳定的生产环境代码同步
+develop 主要分支 - 开发线分支，HEAD指向的代码是最新的开发进度，代表了面向下一版本release的最新代码更改，当开发线的代码到达稳定状态并可以">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Git 版本控制流程">
+<meta property="og:title" content="Git分支规划与命名的最佳实践">
 <meta property="og:url" content="http://yoursite.com/2015/07/14/mynewpost/index.html">
 <meta property="og:site_name" content="renkaixin@github.com">
-<meta property="og:description" content="在使用Git进行版本控制，定义开发生命周期中的每个阶段分别对应的branch
+<meta property="og:description" content="在使用Git进行版本控制时，伴随开发生命周期，需要维护很多的分支，如何创建这些分支并明确命名，是一个头疼的问题，本文总结了Git最常用分支的名称和使用场景。
 
-master HEAD代码与稳定的生产环境代码同步
-develop HEAD代码代表了下一版本release的最新代码更改
-feature 新功能开发分支
-release 版本发布分支
-hotfix 线上问题修改分支
-
-各分支详解
-
-
-branch
-type
-branch off from
-merge back int">
-<meta property="og:updated_time" content="2015-07-16T08:42:21.000Z">
+master 主要分支 - 主线分支，HEAD指向的代码与稳定的生产环境代码同步
+develop 主要分支 - 开发线分支，HEAD指向的代码是最新的开发进度，代表了面向下一版本release的最新代码更改，当开发线的代码到达稳定状态并可以">
+<meta property="og:updated_time" content="2015-07-16T16:21:39.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Git 版本控制流程">
-<meta name="twitter:description" content="在使用Git进行版本控制，定义开发生命周期中的每个阶段分别对应的branch
+<meta name="twitter:title" content="Git分支规划与命名的最佳实践">
+<meta name="twitter:description" content="在使用Git进行版本控制时，伴随开发生命周期，需要维护很多的分支，如何创建这些分支并明确命名，是一个头疼的问题，本文总结了Git最常用分支的名称和使用场景。
 
-master HEAD代码与稳定的生产环境代码同步
-develop HEAD代码代表了下一版本release的最新代码更改
-feature 新功能开发分支
-release 版本发布分支
-hotfix 线上问题修改分支
-
-各分支详解
-
-
-branch
-type
-branch off from
-merge back int">
+master 主要分支 - 主线分支，HEAD指向的代码与稳定的生产环境代码同步
+develop 主要分支 - 开发线分支，HEAD指向的代码是最新的开发进度，代表了面向下一版本release的最新代码更改，当开发线的代码到达稳定状态并可以">
   
   
     <link rel="icon" href="/favicon.png">
@@ -83,7 +50,7 @@ merge back int">
         
   
     <h1 class="article-title" itemprop="name">
-      Git 版本控制流程
+      Git分支规划与命名的最佳实践
     </h1>
   
 
@@ -91,64 +58,77 @@ merge back int">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在使用Git进行版本控制，定义开发生命周期中的每个阶段分别对应的branch</p>
+        <p>在使用Git进行版本控制时，伴随开发生命周期，需要维护很多的分支，如何创建这些分支并明确命名，是一个头疼的问题，本文总结了Git最常用分支的名称和使用场景。</p>
 <ul>
-<li><strong>master</strong> HEAD代码与稳定的生产环境代码同步</li>
-<li><strong>develop</strong> HEAD代码代表了下一版本release的最新代码更改</li>
-<li><strong>feature</strong> 新功能开发分支</li>
-<li><strong>release</strong> 版本发布分支</li>
-<li><strong>hotfix</strong> 线上问题修改分支</li>
+<li><strong>master</strong> 主要分支 - 主线分支，HEAD指向的代码与稳定的生产环境代码同步</li>
+<li><strong>develop</strong> 主要分支 - 开发线分支，HEAD指向的代码是最新的开发进度，代表了面向下一版本release的最新代码更改，当开发线的代码到达稳定状态并可以发布release时，develop线的代码将被合并到master中，并以一个新的release版本号tag</li>
+<li><strong>feature</strong> 辅助分支 - 新功能开发分支 伴随一个新功能开发而存在</li>
+<li><strong>release</strong> 辅助分支 - 版本发布分支 在版本准备发布和发布成功之间存在的临时分支，代表了即将发布的代码状态。</li>
+<li><strong>hotfix</strong> 辅助分支 - 热修补分支 生产环境出现bug需要紧急修复时候创建的</li>
 </ul>
-<h2 id="各分支详解">各分支详解</h2><table>
+<table>
 <thead>
 <tr>
-<th style="text-align:center">branch</th>
-<th style="text-align:center">type</th>
-<th style="text-align:center">branch off from</th>
-<th style="text-align:center">merge back into</th>
+<th style="text-align:center">分支名称</th>
+<th style="text-align:center">分支类型</th>
+<th style="text-align:center">从何处检出</th>
+<th style="text-align:center">合并到何处</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td style="text-align:center">master</td>
-<td style="text-align:center">main</td>
+<td style="text-align:center">主要</td>
 <td style="text-align:center">-</td>
 <td style="text-align:center">-</td>
 </tr>
 <tr>
 <td style="text-align:center">develop</td>
-<td style="text-align:center">main</td>
+<td style="text-align:center">主要</td>
 <td style="text-align:center">-</td>
 <td style="text-align:center">-</td>
 </tr>
 <tr>
 <td style="text-align:center">feature</td>
-<td style="text-align:center">supporting</td>
+<td style="text-align:center">辅助</td>
 <td style="text-align:center">develop</td>
 <td style="text-align:center">develop</td>
 </tr>
 <tr>
 <td style="text-align:center">release</td>
-<td style="text-align:center">supporting</td>
+<td style="text-align:center">辅助</td>
 <td style="text-align:center">develop</td>
 <td style="text-align:center">develop &amp; master</td>
 </tr>
 <tr>
 <td style="text-align:center">hotfix</td>
-<td style="text-align:center">supporting</td>
+<td style="text-align:center">辅助</td>
 <td style="text-align:center">master</td>
 <td style="text-align:center">develop &amp; master</td>
 </tr>
 </tbody>
 </table>
 <h3 id="feature_branches_-_新功能分支">feature branches - 新功能分支</h3><p>新功能分支是branch off from develop，它的生命周期伴随着开发某一特定新功能，新功能开发完成后，将feature分支merge到develop中</p>
-<p>创建新功能分支<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b newfeature develop</span><br></pre></td></tr></table></figure></p>
-<p>合并新功能分支<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout develop&#10;git merge --no-ff newfeature&#10;git branch -d newfeature&#10;git push orign develop</span><br></pre></td></tr></table></figure></p>
+<h4 id="创建新功能分支">创建新功能分支</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b newfeature develop</span><br></pre></td></tr></table></figure>
+<h4 id="合并新功能分支">合并新功能分支</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git checkout develop</span><br><span class="line">git merge --no-ff newfeature</span><br><span class="line">git branch <span class="operator">-d</span> newfeature</span><br><span class="line">git push orign develop</span><br></pre></td></tr></table></figure>
+<h3 id="release_branches_-_新版本分支">release branches - 新版本分支</h3><p>新版本分支创建于生产环境最新release发布前夕，从develop分支中checkout出来，此时允许在release分支上进行小规模的bugfix并准备版本号等信息。而此时develop分支可以继续工作，接收下一个版本的代码改动。</p>
+<h4 id="新版本分支创建时机">新版本分支创建时机</h4><p>新版本分支创建于develop分支的状态已经和预期新版本中的状态一致的时刻。在此时，即将到来的新版本才会根据规则，获取到自己的版本号，而在此之前develop分支中的下一版本号都为next。</p>
+<h4 id="创建新版本分支">创建新版本分支</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b release-<span class="number">1.2</span>.<span class="number">0</span> develop</span><br><span class="line">./some-shell-to-change-file-version-number.sh</span><br><span class="line">git commit <span class="operator">-a</span> -m <span class="string">"Bumped version number to 1.2.0"</span></span><br></pre></td></tr></table></figure>
+<h4 id="合并新版本分支">合并新版本分支</h4><p>当新版本在进行细微调整后成为真正的新版本时，将会通过以下三步完成一个新版本</p>
+<ol>
+<li>将新版本分支合并到master分支中，并对master分支打上tag方便引用（<strong>master分支原则上只接受新版本的merge</strong>）</li>
+<li>将新版本分支合并到develop分支中，将新版本发布期的更改添加到develop代码中</li>
+<li>删除develop分支<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#提交新版本到master中，真正的新版本被创建</span></span><br><span class="line">git checkout master</span><br><span class="line">git merge --no-ff release-<span class="number">1.2</span>.<span class="number">0</span></span><br><span class="line">git tag <span class="operator">-a</span> <span class="number">1.2</span>.<span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#新版本更改同步到develop中</span></span><br><span class="line">git checkout develop</span><br><span class="line">git merge --no-ff release-<span class="number">1.2</span>.<span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#删除新版本分支</span></span><br><span class="line">git branch <span class="operator">-d</span> release-<span class="number">1.2</span>.<span class="number">0</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="hotfix_branches_-_热修补分支">hotfix branches - 热修补分支</h3><p>当生产环境出现重大问题时，从master上直接checkout，此时可以对master的版本增加一个小版本号用以修复这个bug。此时其他开发人员可以继续在develop分支上工作而不必受到影响。问题修改完成后，将会首先合并热修补分支到master分支中修复生产环境问题，进而合并到develop分支中（<strong>如果存在release分支，应先合并到release中，再由release合并到develop中，但如果develop分支等不及这个bug的修复，可以同时合并到develop分支中</strong>）</p>
+<h4 id="创建热修补分支">创建热修补分支</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#假设出现问题的master版本是1.2.0</span></span><br><span class="line">git checkout -b hotfix-<span class="number">1.2</span>.<span class="number">1</span> master</span><br><span class="line">./some-shell-to-change-file-version-number.sh</span><br><span class="line">git commit <span class="operator">-a</span> -m <span class="string">"Bumped version number to 1.2.1"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#修复完成后</span></span><br><span class="line">git commit -m <span class="string">"Fixed severe production problem"</span></span><br></pre></td></tr></table></figure>
+<h4 id="合并热修补分支">合并热修补分支</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#首先将hotfix合并到master中，解决问题</span></span><br><span class="line">git checkout master</span><br><span class="line">git merge --no-ff hotfix-<span class="number">1.2</span>.<span class="number">1</span></span><br><span class="line">git tag <span class="operator">-a</span> <span class="number">1.2</span>.<span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#将hotfix合并到develop中</span></span><br><span class="line">git checkout develop</span><br><span class="line">git merge --no-ff hotfix-<span class="number">1.2</span>.<span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#删除hotfix分支</span></span><br><span class="line">git branch <span class="operator">-d</span> hotfix-<span class="number">1.2</span>.<span class="number">1</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/07/14/mynewpost/" data-id="cic6b2fy10000revf1aaco0bc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/07/14/mynewpost/" data-id="cic6b7poy0000ryvfjrdntdpm" class="article-share-link">Share</a>
       
       
     </footer>
@@ -184,7 +164,7 @@ merge back int">
       <ul>
         
           <li>
-            <a href="/2015/07/14/mynewpost/">Git 版本控制流程</a>
+            <a href="/2015/07/14/mynewpost/">Git分支规划与命名的最佳实践</a>
           </li>
         
       </ul>
@@ -199,11 +179,11 @@ merge back int">
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2015 renkaixin<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      &copy; 2015 renkaixin
     </div>
   </div>
 </footer>
+
     </div>
     <nav id="mobile-nav">
   
@@ -214,9 +194,6 @@ merge back int">
 </nav>
     
 
-
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
-  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
 
 
 <script src="/js/script.js" type="text/javascript"></script>
