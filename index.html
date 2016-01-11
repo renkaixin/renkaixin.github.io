@@ -61,6 +61,89 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-talk-about-life" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/01/11/talk-about-life/" class="article-date">
+  <time datetime="2016-01-11T05:21:17.000Z" itemprop="datePublished">2016-01-11</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/01/11/talk-about-life/">小谈生活</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>午休时候陷入了冥想，不知是不是冥想，还是仅仅想了很多。<br>很忙，忙于应付很多突来的事情，待办清单里面的事，来了去，去了来，像极了茶馆小二的迎来送往。<br>可是生命不可重复，时间一直流逝，忙是什么？忙的是什么？为什么要忙？要忙什么？</p>
+<p>生命的终点没有奖杯，没有盛大的颁奖仪式，即便有，奖品也不是寿命的延长。</p>
+<p>或许一直想得到的，应该是一种确定的感觉，是一种自己明白自己在做什么的安心，是每一次对困惑解开后的恍然大悟，是每一次性能提升后的心满意足，是每一次交付后看到别人很开心后的自己的开心。</p>
+<p>去掉那些不安，去掉那些困惑，去掉那些不满，去掉那些不开心，这，就是每天的奖杯吧。</p>
+<p>也是生命的意义？</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://renhao.me/2016/01/11/talk-about-life/" data-id="cij9j0cf1000368cr5u2slqhb" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Life/">Life</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-bootstrap-modal-angular-directeves" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/01/01/bootstrap-modal-angular-directeves/" class="article-date">
+  <time datetime="2016-01-01T13:36:25.000Z" itemprop="datePublished">2016-01-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/01/01/bootstrap-modal-angular-directeves/">把Bootstrap的Modal组件封装成Angular的Directive</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>我在目前的angular项目中使用bootstrap组件情况比较多，尤其喜欢的情景是：Panel负责列表展示，Modal负责详细数据修改。<br>但目前的痛苦之处是：在HTML结构上，凡是用到了Modal的地方，都要完整写一遍Modal的HTML，并且要定义Modal的ID，业务中如果需要展示隐藏这个Modal,还需要在Controller中调用Bootstrap/Modal的API完成。重复代码很多，而且容易出错。<br>这次优化，我将Modal组件封装成了一个指令，它的头/身/尾分别对应3个简单的子指令，又封装了两个元素指令，用来控制Modal的显示和隐藏(任何具有这些元素的DOM，都具备显示或隐藏某一modal的功能)</p>
+<h4 id="directives-js">directives.js</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">angular.module(<span class="string">'app'</span>, []).directive(</span><br><span class="line">  <span class="string">'momentModal'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        restrict: <span class="string">'E'</span>,</span><br><span class="line">        transclude: <span class="literal">true</span>,</span><br><span class="line">        replace: <span class="literal">true</span>,</span><br><span class="line">        scope: &#123;</span><br><span class="line">            show : <span class="string">'='</span>,</span><br><span class="line">            close : <span class="string">'='</span></span><br><span class="line">        &#125;,</span><br><span class="line">        template:</span><br><span class="line">            <span class="string">'&lt;div class="modal" style="display: none;"&gt;\</span><br><span class="line">                &lt;div class="modal-dialog"&gt;\</span><br><span class="line">                    &lt;div class="modal-content" ng-transclude&gt;\</span><br><span class="line">                    &lt;/div&gt;\</span><br><span class="line">                &lt;/div&gt;\</span><br><span class="line">            &lt;/div&gt;'</span>,</span><br><span class="line">        link: <span class="function"><span class="keyword">function</span> (<span class="params">scope, ele, attrs</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">var</span> title = attrs.title || <span class="string">''</span>, header;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>(<span class="string">'size'</span> <span class="keyword">in</span> attrs &amp;&amp; ~[<span class="string">'lg'</span>, <span class="string">'sm'</span>].indexOf(attrs.size)) &#123;</span><br><span class="line">                ele.find(<span class="string">'.modal-dialog'</span>).addClass(<span class="string">'modal-'</span> + attrs.size);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(!ele.find(<span class="string">'.modal-header'</span>).length) &#123;</span><br><span class="line">                header = $compile(<span class="string">'&lt;div class="modal-header"&gt;\</span><br><span class="line">                            &lt;a href="javascript:void(0);" moment-modal-close class="pull-right"&gt;&lt;i class="fa fa-times"&gt;&lt;/i&gt;&lt;/a&gt;\</span><br><span class="line">                            &lt;h4 class="modal-title"&gt;'</span> + title + <span class="string">'&lt;/h4&gt;\</span><br><span class="line">                    &lt;/div&gt;'</span>)(scope);</span><br><span class="line">                ele.find(<span class="string">'.modal-content'</span>).prepend(header);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            _.isFunction(scope.show) &amp;&amp; ele.on(<span class="string">'show.bs.modal'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                scope.show();</span><br><span class="line">            &#125;);</span><br><span class="line"></span><br><span class="line">            _.isFunction(scope.hide) &amp;&amp; ele.on(<span class="string">'hide.bs.modal'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                scope.hide();</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;;</span><br><span class="line">  &#125;).directive(<span class="string">'momentModalHeader'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">            restrict: <span class="string">'E'</span>,</span><br><span class="line">            transclude: <span class="literal">true</span>,</span><br><span class="line">            replace: <span class="literal">true</span>,</span><br><span class="line">            template: <span class="string">'&lt;div class="modal-header" ng-transclude&gt;&lt;/div&gt;'</span></span><br><span class="line">      &#125;</span><br><span class="line">  &#125;)directive(<span class="string">'momentModalBody'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">            restrict: <span class="string">'E'</span>,</span><br><span class="line">            transclude: <span class="literal">true</span>,</span><br><span class="line">            replace: <span class="literal">true</span>,</span><br><span class="line">            template: <span class="string">'&lt;div class="modal-body" ng-transclude&gt;&lt;/div&gt;'</span></span><br><span class="line">      &#125;</span><br><span class="line">  &#125;)directive(<span class="string">'momentModalFooter'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">            restrict: <span class="string">'E'</span>,</span><br><span class="line">            transclude: <span class="literal">true</span>,</span><br><span class="line">            replace: <span class="literal">true</span>,</span><br><span class="line">            template: <span class="string">'&lt;div class="modal-footer" ng-transclude&gt;&lt;/div&gt;'</span></span><br><span class="line">      &#125;</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://renhao.me/2016/01/01/bootstrap-modal-angular-directeves/" data-id="cij9j0cf5000668crefomxskt" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Angular/">Angular</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-introduction-to-page-visibility-API" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/12/30/introduction-to-page-visibility-API/" class="article-date">
@@ -89,7 +172,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://renhao.me/2015/12/30/introduction-to-page-visibility-API/" data-id="ciisql4tp0003g4crp3ym1eeq" class="article-share-link">Share</a>
+      <a data-url="http://renhao.me/2015/12/30/introduction-to-page-visibility-API/" data-id="cij9j0cf7000b68criek3oirp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/">HTML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
@@ -193,7 +276,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://renhao.me/2015/07/14/mynewpost/" data-id="ciisql4ss0000g4crrpc12zjp" class="article-share-link">Share</a>
+      <a data-url="http://renhao.me/2015/07/14/mynewpost/" data-id="cij9j0cea000068crh3iv6uc5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>
@@ -216,7 +299,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Angular/">Angular</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Life/">Life</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -225,7 +308,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Javascript/" style="font-size: 10px;">Javascript</a>
+      <a href="/tags/Angular/" style="font-size: 10px;">Angular</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Javascript/" style="font-size: 20px;">Javascript</a> <a href="/tags/Life/" style="font-size: 10px;">Life</a>
     </div>
   </div>
 
@@ -234,7 +317,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -244,6 +327,14 @@
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2016/01/11/talk-about-life/">小谈生活</a>
+          </li>
+        
+          <li>
+            <a href="/2016/01/01/bootstrap-modal-angular-directeves/">把Bootstrap的Modal组件封装成Angular的Directive</a>
+          </li>
         
           <li>
             <a href="/2015/12/30/introduction-to-page-visibility-API/">Javascript判断当前页面/标签是否正在被用户浏览</a>
@@ -265,7 +356,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2015 renkaixin<br>
+      &copy; 2016 renkaixin<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
