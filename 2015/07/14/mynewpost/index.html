@@ -34,7 +34,13 @@ develop 主要分支 - 开发线分支，HEAD指向的代码是最新的开发�
   <link rel="stylesheet" href="/css/style.css" type="text/css">
   
 
+  <link href="/prettify/prettify.css" rel="stylesheet" type="text/css">
+
+  <script type="text/javascript" src="/prettify/prettify.js"></script>
+
+
 </head>
+
 <body>
   <div id="container">
     <div id="wrap">
@@ -142,26 +148,55 @@ develop 主要分支 - 开发线分支，HEAD指向的代码是最新的开发�
 </tbody>
 </table>
 <h3 id="feature_branches_-_新功能分支">feature branches - 新功能分支</h3><p>新功能分支是branch off from develop，它的生命周期伴随着开发某一特定新功能，新功能开发完成后，将feature分支merge到develop中</p>
-<h4 id="创建新功能分支">创建新功能分支</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b newfeature develop</span><br></pre></td></tr></table></figure>
-<h4 id="合并新功能分支">合并新功能分支</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git checkout develop</span><br><span class="line">git merge --no-ff newfeature</span><br><span class="line">git branch <span class="operator">-d</span> newfeature</span><br><span class="line">git push orign develop</span><br></pre></td></tr></table></figure>
+<h4 id="创建新功能分支">创建新功能分支</h4><pre><code class="bash">git checkout -b newfeature develop
+</code></pre>
+<h4 id="合并新功能分支">合并新功能分支</h4><pre><code class="bash">git checkout develop
+git merge --no-ff newfeature
+git branch -d newfeature
+git push orign develop
+</code></pre>
 <h3 id="release_branches_-_新版本分支">release branches - 新版本分支</h3><p>新版本分支创建于生产环境最新release发布前夕，从develop分支中checkout出来，此时允许在release分支上进行小规模的bugfix并准备版本号等信息。而此时develop分支可以继续工作，接收下一个版本的代码改动。</p>
 <h4 id="新版本分支创建时机">新版本分支创建时机</h4><p>新版本分支创建于develop分支的状态已经和预期新版本中的状态一致的时刻。在此时，即将到来的新版本才会根据规则，获取到自己的版本号，而在此之前develop分支中的下一版本号都为next。</p>
-<h4 id="创建新版本分支">创建新版本分支</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b release-<span class="number">1.2</span>.<span class="number">0</span> develop</span><br><span class="line">./some-shell-to-change-file-version-number.sh</span><br><span class="line">git commit <span class="operator">-a</span> -m <span class="string">"Bumped version number to 1.2.0"</span></span><br></pre></td></tr></table></figure>
+<h4 id="创建新版本分支">创建新版本分支</h4><pre><code class="bash">git checkout -b release-1.2.0 develop
+./some-shell-to-change-file-version-number.sh
+git commit -a -m &quot;Bumped version number to 1.2.0&quot;
+</code></pre>
 <h4 id="合并新版本分支">合并新版本分支</h4><p>当新版本在进行细微调整后成为真正的新版本时，将会通过以下三步完成一个新版本</p>
 <ol>
 <li>将新版本分支合并到master分支中，并对master分支打上tag方便引用（<strong>master分支原则上只接受新版本的merge</strong>）</li>
 <li>将新版本分支合并到develop分支中，将新版本发布期的更改添加到develop代码中</li>
-<li>删除develop分支<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#提交新版本到master中，真正的新版本被创建</span></span><br><span class="line">git checkout master</span><br><span class="line">git merge --no-ff release-<span class="number">1.2</span>.<span class="number">0</span></span><br><span class="line">git tag <span class="operator">-a</span> <span class="number">1.2</span>.<span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#新版本更改同步到develop中</span></span><br><span class="line">git checkout develop</span><br><span class="line">git merge --no-ff release-<span class="number">1.2</span>.<span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#删除新版本分支</span></span><br><span class="line">git branch <span class="operator">-d</span> release-<span class="number">1.2</span>.<span class="number">0</span></span><br></pre></td></tr></table></figure>
-</li>
+<li>删除develop分支<br>```bash<h1 id="提交新版本到master中，真正的新版本被创建">提交新版本到master中，真正的新版本被创建</h1>git checkout master<br>git merge —no-ff release-1.2.0<br>git tag -a 1.2.0</li>
 </ol>
-<h3 id="hotfix_branches_-_热修补分支">hotfix branches - 热修补分支</h3><p>当生产环境出现重大问题时，从master上直接checkout，此时可以对master的版本增加一个小版本号用以修复这个bug。此时其他开发人员可以继续在develop分支上工作而不必受到影响。问题修改完成后，将会首先合并热修补分支到master分支中修复生产环境问题，进而合并到develop分支中（<strong>如果存在release分支，应先合并到release中，再由release合并到develop中，但如果develop分支等不及这个bug的修复，可以同时合并到develop分支中</strong>）</p>
-<h4 id="创建热修补分支">创建热修补分支</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#假设出现问题的master版本是1.2.0</span></span><br><span class="line">git checkout -b hotfix-<span class="number">1.2</span>.<span class="number">1</span> master</span><br><span class="line">./some-shell-to-change-file-version-number.sh</span><br><span class="line">git commit <span class="operator">-a</span> -m <span class="string">"Bumped version number to 1.2.1"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#修复完成后</span></span><br><span class="line">git commit -m <span class="string">"Fixed severe production problem"</span></span><br></pre></td></tr></table></figure>
-<h4 id="合并热修补分支">合并热修补分支</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#首先将hotfix合并到master中，解决问题</span></span><br><span class="line">git checkout master</span><br><span class="line">git merge --no-ff hotfix-<span class="number">1.2</span>.<span class="number">1</span></span><br><span class="line">git tag <span class="operator">-a</span> <span class="number">1.2</span>.<span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#将hotfix合并到develop中</span></span><br><span class="line">git checkout develop</span><br><span class="line">git merge --no-ff hotfix-<span class="number">1.2</span>.<span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#删除hotfix分支</span></span><br><span class="line">git branch <span class="operator">-d</span> hotfix-<span class="number">1.2</span>.<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<h1 id="新版本更改同步到develop中">新版本更改同步到develop中</h1><p>git checkout develop<br>git merge —no-ff release-1.2.0</p>
+<h1 id="删除新版本分支">删除新版本分支</h1><p>git branch -d release-1.2.0</p>
+<pre><code>### hotfix branches - 热修补分支
+当生产环境出现重大问题时，从master上直接checkout，此时可以对master的版本增加一个小版本号用以修复这个bug。此时其他开发人员可以继续在develop分支上工作而不必受到影响。问题修改完成后，将会首先合并热修补分支到master分支中修复生产环境问题，进而合并到develop分支中（**如果存在release分支，应先合并到release中，再由release合并到develop中，但如果develop分支等不及这个bug的修复，可以同时合并到develop分支中**）
+####创建热修补分支
+```bash
+#假设出现问题的master版本是1.2.0
+git checkout -b hotfix-1.2.1 master
+./some-shell-to-change-file-version-number.sh
+git commit -a -m &quot;Bumped version number to 1.2.1&quot;
+
+#修复完成后
+git commit -m &quot;Fixed severe production problem&quot;
+</code></pre><h4 id="合并热修补分支">合并热修补分支</h4><pre><code class="bash">#首先将hotfix合并到master中，解决问题
+git checkout master
+git merge --no-ff hotfix-1.2.1
+git tag -a 1.2.1
+
+#将hotfix合并到develop中
+git checkout develop
+git merge --no-ff hotfix-1.2.1
+
+#删除hotfix分支
+git branch -d hotfix-1.2.1
+</code></pre>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://renhao.me/2015/07/14/mynewpost/" data-id="ciqs9ot7300004ecrepshftfs" class="article-share-link">Share</a>
+      <a data-url="http://renhao.me/2015/07/14/mynewpost/" data-id="ciqt8tu620000m8cr202lpans" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>

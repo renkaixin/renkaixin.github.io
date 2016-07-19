@@ -24,7 +24,13 @@
   <link rel="stylesheet" href="/css/style.css" type="text/css">
   
 
+  <link href="/prettify/prettify.css" rel="stylesheet" type="text/css">
+
+  <script type="text/javascript" src="/prettify/prettify.js"></script>
+
+
 </head>
+
 <body>
   <div id="container">
     <div id="wrap">
@@ -83,21 +89,31 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="问题">问题</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">“checkbox”</span> <span class="attribute">ng-model</span>=<span class="value">“one.is_checked”</span> <span class="attribute">ng-checked</span>=<span class="value">“one.is_checked"</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">one.is_checked = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+        <h3 id="问题">问题</h3><pre><code class="html">&lt;input type=“checkbox” ng-model=“one.is_checked” ng-checked=“one.is_checked&quot;&gt;
+</code></pre>
+<pre><code class="Javascript">one.is_checked = 1;
+</code></pre>
 <p>期望checkbox选中，但结果是checkbox没有选中。</p>
-<h3 id="解决方案">解决方案</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">“checkbox”</span> <span class="attribute">ng-model</span>=<span class="value">“one.is_checked”</span> <span class="attribute">ng-checked</span>=<span class="value">“one.is_checked"</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">one.is_checked = <span class="literal">true</span>;</span><br></pre></td></tr></table></figure>
-<p>或<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">“checkbox”</span> <span class="attribute">ng-model</span>=<span class="value">“one.is_checked”</span> <span class="attribute">ng-true-value</span>=<span class="value">“1"</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">one.is_checked = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
-<p>或<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">“checkbox”</span> <span class="attribute">ng-checked</span>=<span class="value">“one.is_checked”</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">one.is_checked = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="解决方案">解决方案</h3><pre><code class="html">&lt;input type=“checkbox” ng-model=“one.is_checked” ng-checked=“one.is_checked&quot;&gt;
+</code></pre>
+<pre><code class="Javascript">one.is_checked = true;
+</code></pre>
+<p>或</p>
+<pre><code class="html">&lt;input type=“checkbox” ng-model=“one.is_checked” ng-true-value=“1&quot;&gt;
+</code></pre>
+<pre><code class="Javascript">one.is_checked = 1;
+</code></pre>
+<p>或</p>
+<pre><code class="html">&lt;input type=“checkbox” ng-checked=“one.is_checked”&gt;
+</code></pre>
+<pre><code class="Javascript">one.is_checked = 1;
+</code></pre>
 <h3 id="原理">原理</h3><p>Angular官方建议ng-model与ng-checked不可同时使用，否则会出现不可预估的结果。<br>ngChecked是为解决记录checkbox的checked属性而设计，表达式求值可以决定当前状态是否选中。而ngModel仅在接到布尔值时候才控制checkbox的选中状态，否则需要指定真假值的具体形式</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://renhao.me/2016/07/19/ngChecked-Directive/" data-id="ciqs9upj900006ccr1h29cnaf" class="article-share-link">Share</a>
+      <a data-url="http://renhao.me/2016/07/19/ngChecked-Directive/" data-id="ciqt8tu7q0003m8crdfiaijkp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Angular/">Angular</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
@@ -140,7 +156,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://renhao.me/2016/01/11/talk-about-life/" data-id="ciqs9ot8900034ecrdi6wr0t4" class="article-share-link">Share</a>
+      <a data-url="http://renhao.me/2016/01/11/talk-about-life/" data-id="ciqt8tu7t0008m8crcqdhxl9h" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Life/">Life</a></li></ul>
@@ -175,12 +191,75 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>我在目前的angular项目中使用bootstrap组件情况比较多，尤其喜欢的情景是：Panel负责列表展示，Modal负责详细数据修改。<br>但目前的痛苦之处是：在HTML结构上，凡是用到了Modal的地方，都要完整写一遍Modal的HTML，并且要定义Modal的ID，业务中如果需要展示隐藏这个Modal,还需要在Controller中调用Bootstrap/Modal的API完成。重复代码很多，而且容易出错。<br>这次优化，我将Modal组件封装成了一个指令，它的头/身/尾分别对应3个简单的子指令，又封装了两个元素指令，用来控制Modal的显示和隐藏(任何具有这些元素的DOM，都具备显示或隐藏某一modal的功能)</p>
-<h4 id="directives-js">directives.js</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">angular.module(<span class="string">'app'</span>, []).directive(</span><br><span class="line">  <span class="string">'momentModal'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        restrict: <span class="string">'E'</span>,</span><br><span class="line">        transclude: <span class="literal">true</span>,</span><br><span class="line">        replace: <span class="literal">true</span>,</span><br><span class="line">        scope: &#123;</span><br><span class="line">            show : <span class="string">'='</span>,</span><br><span class="line">            close : <span class="string">'='</span></span><br><span class="line">        &#125;,</span><br><span class="line">        template:</span><br><span class="line">            <span class="string">'&lt;div class="modal" style="display: none;"&gt;\</span><br><span class="line">                &lt;div class="modal-dialog"&gt;\</span><br><span class="line">                    &lt;div class="modal-content" ng-transclude&gt;\</span><br><span class="line">                    &lt;/div&gt;\</span><br><span class="line">                &lt;/div&gt;\</span><br><span class="line">            &lt;/div&gt;'</span>,</span><br><span class="line">        link: <span class="function"><span class="keyword">function</span> (<span class="params">scope, ele, attrs</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">var</span> title = attrs.title || <span class="string">''</span>, header;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>(<span class="string">'size'</span> <span class="keyword">in</span> attrs &amp;&amp; ~[<span class="string">'lg'</span>, <span class="string">'sm'</span>].indexOf(attrs.size)) &#123;</span><br><span class="line">                ele.find(<span class="string">'.modal-dialog'</span>).addClass(<span class="string">'modal-'</span> + attrs.size);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(!ele.find(<span class="string">'.modal-header'</span>).length) &#123;</span><br><span class="line">                header = $compile(<span class="string">'&lt;div class="modal-header"&gt;\</span><br><span class="line">                            &lt;a href="javascript:void(0);" moment-modal-close class="pull-right"&gt;&lt;i class="fa fa-times"&gt;&lt;/i&gt;&lt;/a&gt;\</span><br><span class="line">                            &lt;h4 class="modal-title"&gt;'</span> + title + <span class="string">'&lt;/h4&gt;\</span><br><span class="line">                    &lt;/div&gt;'</span>)(scope);</span><br><span class="line">                ele.find(<span class="string">'.modal-content'</span>).prepend(header);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            _.isFunction(scope.show) &amp;&amp; ele.on(<span class="string">'show.bs.modal'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                scope.show();</span><br><span class="line">            &#125;);</span><br><span class="line"></span><br><span class="line">            _.isFunction(scope.hide) &amp;&amp; ele.on(<span class="string">'hide.bs.modal'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                scope.hide();</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;;</span><br><span class="line">  &#125;).directive(<span class="string">'momentModalHeader'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">            restrict: <span class="string">'E'</span>,</span><br><span class="line">            transclude: <span class="literal">true</span>,</span><br><span class="line">            replace: <span class="literal">true</span>,</span><br><span class="line">            template: <span class="string">'&lt;div class="modal-header" ng-transclude&gt;&lt;/div&gt;'</span></span><br><span class="line">      &#125;</span><br><span class="line">  &#125;)directive(<span class="string">'momentModalBody'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">            restrict: <span class="string">'E'</span>,</span><br><span class="line">            transclude: <span class="literal">true</span>,</span><br><span class="line">            replace: <span class="literal">true</span>,</span><br><span class="line">            template: <span class="string">'&lt;div class="modal-body" ng-transclude&gt;&lt;/div&gt;'</span></span><br><span class="line">      &#125;</span><br><span class="line">  &#125;)directive(<span class="string">'momentModalFooter'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">            restrict: <span class="string">'E'</span>,</span><br><span class="line">            transclude: <span class="literal">true</span>,</span><br><span class="line">            replace: <span class="literal">true</span>,</span><br><span class="line">            template: <span class="string">'&lt;div class="modal-footer" ng-transclude&gt;&lt;/div&gt;'</span></span><br><span class="line">      &#125;</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="directives-js">directives.js</h4><pre><code class="Javascript">angular.module(&#39;app&#39;, []).directive(
+  &#39;momentModal&#39;, function() {
+    return {
+        restrict: &#39;E&#39;,
+        transclude: true,
+        replace: true,
+        scope: {
+            show : &#39;=&#39;,
+            close : &#39;=&#39;
+        },
+        template:
+            &#39;&lt;div class=&quot;modal&quot; style=&quot;display: none;&quot;&gt;\
+                &lt;div class=&quot;modal-dialog&quot;&gt;\
+                    &lt;div class=&quot;modal-content&quot; ng-transclude&gt;\
+                    &lt;/div&gt;\
+                &lt;/div&gt;\
+            &lt;/div&gt;&#39;,
+        link: function (scope, ele, attrs) {
+
+            var title = attrs.title || &#39;&#39;, header;
+
+            if(&#39;size&#39; in attrs &amp;&amp; ~[&#39;lg&#39;, &#39;sm&#39;].indexOf(attrs.size)) {
+                ele.find(&#39;.modal-dialog&#39;).addClass(&#39;modal-&#39; + attrs.size);
+            }
+            if(!ele.find(&#39;.modal-header&#39;).length) {
+                header = $compile(&#39;&lt;div class=&quot;modal-header&quot;&gt;\
+                            &lt;a href=&quot;javascript:void(0);&quot; moment-modal-close class=&quot;pull-right&quot;&gt;&lt;i class=&quot;fa fa-times&quot;&gt;&lt;/i&gt;&lt;/a&gt;\
+                            &lt;h4 class=&quot;modal-title&quot;&gt;&#39; + title + &#39;&lt;/h4&gt;\
+                    &lt;/div&gt;&#39;)(scope);
+                ele.find(&#39;.modal-content&#39;).prepend(header);
+            }
+
+            _.isFunction(scope.show) &amp;&amp; ele.on(&#39;show.bs.modal&#39;, function () {
+                scope.show();
+            });
+
+            _.isFunction(scope.hide) &amp;&amp; ele.on(&#39;hide.bs.modal&#39;, function () {
+                scope.hide();
+            });
+        }
+      };
+  }).directive(&#39;momentModalHeader&#39;, function() {
+      return {
+            restrict: &#39;E&#39;,
+            transclude: true,
+            replace: true,
+            template: &#39;&lt;div class=&quot;modal-header&quot; ng-transclude&gt;&lt;/div&gt;&#39;
+      }
+  })directive(&#39;momentModalBody&#39;, function() {
+      return {
+            restrict: &#39;E&#39;,
+            transclude: true,
+            replace: true,
+            template: &#39;&lt;div class=&quot;modal-body&quot; ng-transclude&gt;&lt;/div&gt;&#39;
+      }
+  })directive(&#39;momentModalFooter&#39;, function() {
+      return {
+            restrict: &#39;E&#39;,
+            transclude: true,
+            replace: true,
+            template: &#39;&lt;div class=&quot;modal-footer&quot; ng-transclude&gt;&lt;/div&gt;&#39;
+      }
+  })
+</code></pre>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://renhao.me/2016/01/01/bootstrap-modal-angular-directeves/" data-id="ciqs9ot8d00064ecrzyvhdr8p" class="article-share-link">Share</a>
+      <a data-url="http://renhao.me/2016/01/01/bootstrap-modal-angular-directeves/" data-id="ciqt8tu7w000bm8cr104ndk0o" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Angular/">Angular</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
@@ -215,12 +294,49 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><a href="http://www.w3.org/TR/page-visibility/" target="_blank" rel="external">W3C</a>规范规定了<a href="https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API" target="_blank" rel="external">PageVisibility API</a>用以帮助人们判断当前页面/标签是否正在被用户浏览（即页面是否可见），当页面隐藏和现实间切换时，触发visibilitychange事件，通过监听这一事件，可以决策当前页面的行为。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> hidden = <span class="string">"hidden"</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Standards:</span></span><br><span class="line">  <span class="keyword">if</span> (hidden <span class="keyword">in</span> <span class="built_in">document</span>)</span><br><span class="line">    <span class="built_in">document</span>.addEventListener(<span class="string">"visibilitychange"</span>, onchange);</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span> ((hidden = <span class="string">"mozHidden"</span>) <span class="keyword">in</span> <span class="built_in">document</span>)</span><br><span class="line">    <span class="built_in">document</span>.addEventListener(<span class="string">"mozvisibilitychange"</span>, onchange);</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span> ((hidden = <span class="string">"webkitHidden"</span>) <span class="keyword">in</span> <span class="built_in">document</span>)</span><br><span class="line">    <span class="built_in">document</span>.addEventListener(<span class="string">"webkitvisibilitychange"</span>, onchange);</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span> ((hidden = <span class="string">"msHidden"</span>) <span class="keyword">in</span> <span class="built_in">document</span>)</span><br><span class="line">    <span class="built_in">document</span>.addEventListener(<span class="string">"msvisibilitychange"</span>, onchange);</span><br><span class="line">  <span class="comment">// IE 9 and lower:</span></span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"onfocusin"</span> <span class="keyword">in</span> <span class="built_in">document</span>)</span><br><span class="line">    <span class="built_in">document</span>.onfocusin = <span class="built_in">document</span>.onfocusout = onchange;</span><br><span class="line">  <span class="comment">// All others:</span></span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">window</span>.onpageshow = <span class="built_in">window</span>.onpagehide</span><br><span class="line">    = <span class="built_in">window</span>.onfocus = <span class="built_in">window</span>.onblur = onchange;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">onchange</span> (<span class="params">evt</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> v = <span class="string">"visible"</span>, h = <span class="string">"hidden"</span>,</span><br><span class="line">        evtMap = &#123;</span><br><span class="line">          focus:v, focusin:v, pageshow:v, blur:h, focusout:h, pagehide:h</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">    evt = evt || <span class="built_in">window</span>.event;</span><br><span class="line">    <span class="keyword">if</span> (evt.type <span class="keyword">in</span> evtMap)</span><br><span class="line">      <span class="built_in">document</span>.body.className = evtMap[evt.type];</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      <span class="built_in">document</span>.body.className = <span class="keyword">this</span>[hidden] ? <span class="string">"hidden"</span> : <span class="string">"visible"</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// set the initial state (but only if browser supports the Page Visibility API)</span></span><br><span class="line">  <span class="keyword">if</span>( <span class="built_in">document</span>[hidden] !== <span class="literal">undefined</span> )</span><br><span class="line">    onchange(&#123;type: <span class="built_in">document</span>[hidden] ? <span class="string">"blur"</span> : <span class="string">"focus"</span>&#125;);</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<pre><code class="Javascript">(function() {
+  var hidden = &quot;hidden&quot;;
+
+  // Standards:
+  if (hidden in document)
+    document.addEventListener(&quot;visibilitychange&quot;, onchange);
+  else if ((hidden = &quot;mozHidden&quot;) in document)
+    document.addEventListener(&quot;mozvisibilitychange&quot;, onchange);
+  else if ((hidden = &quot;webkitHidden&quot;) in document)
+    document.addEventListener(&quot;webkitvisibilitychange&quot;, onchange);
+  else if ((hidden = &quot;msHidden&quot;) in document)
+    document.addEventListener(&quot;msvisibilitychange&quot;, onchange);
+  // IE 9 and lower:
+  else if (&quot;onfocusin&quot; in document)
+    document.onfocusin = document.onfocusout = onchange;
+  // All others:
+  else
+    window.onpageshow = window.onpagehide
+    = window.onfocus = window.onblur = onchange;
+
+  function onchange (evt) {
+    var v = &quot;visible&quot;, h = &quot;hidden&quot;,
+        evtMap = {
+          focus:v, focusin:v, pageshow:v, blur:h, focusout:h, pagehide:h
+        };
+
+    evt = evt || window.event;
+    if (evt.type in evtMap)
+      document.body.className = evtMap[evt.type];
+    else
+      document.body.className = this[hidden] ? &quot;hidden&quot; : &quot;visible&quot;;
+  }
+
+  // set the initial state (but only if browser supports the Page Visibility API)
+  if( document[hidden] !== undefined )
+    onchange({type: document[hidden] ? &quot;blur&quot; : &quot;focus&quot;});
+})();
+</code></pre>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://renhao.me/2015/12/30/introduction-to-page-visibility-API/" data-id="ciqs9ot8f000b4ecrr6nb3fav" class="article-share-link">Share</a>
+      <a data-url="http://renhao.me/2015/12/30/introduction-to-page-visibility-API/" data-id="ciqt8tu7y000em8cr68dxhlhr" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/">HTML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
@@ -305,26 +421,55 @@
 </tbody>
 </table>
 <h3 id="feature_branches_-_新功能分支">feature branches - 新功能分支</h3><p>新功能分支是branch off from develop，它的生命周期伴随着开发某一特定新功能，新功能开发完成后，将feature分支merge到develop中</p>
-<h4 id="创建新功能分支">创建新功能分支</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b newfeature develop</span><br></pre></td></tr></table></figure>
-<h4 id="合并新功能分支">合并新功能分支</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git checkout develop</span><br><span class="line">git merge --no-ff newfeature</span><br><span class="line">git branch <span class="operator">-d</span> newfeature</span><br><span class="line">git push orign develop</span><br></pre></td></tr></table></figure>
+<h4 id="创建新功能分支">创建新功能分支</h4><pre><code class="bash">git checkout -b newfeature develop
+</code></pre>
+<h4 id="合并新功能分支">合并新功能分支</h4><pre><code class="bash">git checkout develop
+git merge --no-ff newfeature
+git branch -d newfeature
+git push orign develop
+</code></pre>
 <h3 id="release_branches_-_新版本分支">release branches - 新版本分支</h3><p>新版本分支创建于生产环境最新release发布前夕，从develop分支中checkout出来，此时允许在release分支上进行小规模的bugfix并准备版本号等信息。而此时develop分支可以继续工作，接收下一个版本的代码改动。</p>
 <h4 id="新版本分支创建时机">新版本分支创建时机</h4><p>新版本分支创建于develop分支的状态已经和预期新版本中的状态一致的时刻。在此时，即将到来的新版本才会根据规则，获取到自己的版本号，而在此之前develop分支中的下一版本号都为next。</p>
-<h4 id="创建新版本分支">创建新版本分支</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b release-<span class="number">1.2</span>.<span class="number">0</span> develop</span><br><span class="line">./some-shell-to-change-file-version-number.sh</span><br><span class="line">git commit <span class="operator">-a</span> -m <span class="string">"Bumped version number to 1.2.0"</span></span><br></pre></td></tr></table></figure>
+<h4 id="创建新版本分支">创建新版本分支</h4><pre><code class="bash">git checkout -b release-1.2.0 develop
+./some-shell-to-change-file-version-number.sh
+git commit -a -m &quot;Bumped version number to 1.2.0&quot;
+</code></pre>
 <h4 id="合并新版本分支">合并新版本分支</h4><p>当新版本在进行细微调整后成为真正的新版本时，将会通过以下三步完成一个新版本</p>
 <ol>
 <li>将新版本分支合并到master分支中，并对master分支打上tag方便引用（<strong>master分支原则上只接受新版本的merge</strong>）</li>
 <li>将新版本分支合并到develop分支中，将新版本发布期的更改添加到develop代码中</li>
-<li>删除develop分支<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#提交新版本到master中，真正的新版本被创建</span></span><br><span class="line">git checkout master</span><br><span class="line">git merge --no-ff release-<span class="number">1.2</span>.<span class="number">0</span></span><br><span class="line">git tag <span class="operator">-a</span> <span class="number">1.2</span>.<span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#新版本更改同步到develop中</span></span><br><span class="line">git checkout develop</span><br><span class="line">git merge --no-ff release-<span class="number">1.2</span>.<span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#删除新版本分支</span></span><br><span class="line">git branch <span class="operator">-d</span> release-<span class="number">1.2</span>.<span class="number">0</span></span><br></pre></td></tr></table></figure>
-</li>
+<li>删除develop分支<br>```bash<h1 id="提交新版本到master中，真正的新版本被创建">提交新版本到master中，真正的新版本被创建</h1>git checkout master<br>git merge —no-ff release-1.2.0<br>git tag -a 1.2.0</li>
 </ol>
-<h3 id="hotfix_branches_-_热修补分支">hotfix branches - 热修补分支</h3><p>当生产环境出现重大问题时，从master上直接checkout，此时可以对master的版本增加一个小版本号用以修复这个bug。此时其他开发人员可以继续在develop分支上工作而不必受到影响。问题修改完成后，将会首先合并热修补分支到master分支中修复生产环境问题，进而合并到develop分支中（<strong>如果存在release分支，应先合并到release中，再由release合并到develop中，但如果develop分支等不及这个bug的修复，可以同时合并到develop分支中</strong>）</p>
-<h4 id="创建热修补分支">创建热修补分支</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#假设出现问题的master版本是1.2.0</span></span><br><span class="line">git checkout -b hotfix-<span class="number">1.2</span>.<span class="number">1</span> master</span><br><span class="line">./some-shell-to-change-file-version-number.sh</span><br><span class="line">git commit <span class="operator">-a</span> -m <span class="string">"Bumped version number to 1.2.1"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#修复完成后</span></span><br><span class="line">git commit -m <span class="string">"Fixed severe production problem"</span></span><br></pre></td></tr></table></figure>
-<h4 id="合并热修补分支">合并热修补分支</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#首先将hotfix合并到master中，解决问题</span></span><br><span class="line">git checkout master</span><br><span class="line">git merge --no-ff hotfix-<span class="number">1.2</span>.<span class="number">1</span></span><br><span class="line">git tag <span class="operator">-a</span> <span class="number">1.2</span>.<span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#将hotfix合并到develop中</span></span><br><span class="line">git checkout develop</span><br><span class="line">git merge --no-ff hotfix-<span class="number">1.2</span>.<span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#删除hotfix分支</span></span><br><span class="line">git branch <span class="operator">-d</span> hotfix-<span class="number">1.2</span>.<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<h1 id="新版本更改同步到develop中">新版本更改同步到develop中</h1><p>git checkout develop<br>git merge —no-ff release-1.2.0</p>
+<h1 id="删除新版本分支">删除新版本分支</h1><p>git branch -d release-1.2.0</p>
+<pre><code>### hotfix branches - 热修补分支
+当生产环境出现重大问题时，从master上直接checkout，此时可以对master的版本增加一个小版本号用以修复这个bug。此时其他开发人员可以继续在develop分支上工作而不必受到影响。问题修改完成后，将会首先合并热修补分支到master分支中修复生产环境问题，进而合并到develop分支中（**如果存在release分支，应先合并到release中，再由release合并到develop中，但如果develop分支等不及这个bug的修复，可以同时合并到develop分支中**）
+####创建热修补分支
+```bash
+#假设出现问题的master版本是1.2.0
+git checkout -b hotfix-1.2.1 master
+./some-shell-to-change-file-version-number.sh
+git commit -a -m &quot;Bumped version number to 1.2.1&quot;
+
+#修复完成后
+git commit -m &quot;Fixed severe production problem&quot;
+</code></pre><h4 id="合并热修补分支">合并热修补分支</h4><pre><code class="bash">#首先将hotfix合并到master中，解决问题
+git checkout master
+git merge --no-ff hotfix-1.2.1
+git tag -a 1.2.1
+
+#将hotfix合并到develop中
+git checkout develop
+git merge --no-ff hotfix-1.2.1
+
+#删除hotfix分支
+git branch -d hotfix-1.2.1
+</code></pre>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://renhao.me/2015/07/14/mynewpost/" data-id="ciqs9ot7300004ecrepshftfs" class="article-share-link">Share</a>
+      <a data-url="http://renhao.me/2015/07/14/mynewpost/" data-id="ciqt8tu620000m8cr202lpans" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>

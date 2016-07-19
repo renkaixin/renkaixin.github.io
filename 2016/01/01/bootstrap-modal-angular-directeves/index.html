@@ -25,7 +25,13 @@
   <link rel="stylesheet" href="/css/style.css" type="text/css">
   
 
+  <link href="/prettify/prettify.css" rel="stylesheet" type="text/css">
+
+  <script type="text/javascript" src="/prettify/prettify.js"></script>
+
+
 </head>
+
 <body>
   <div id="container">
     <div id="wrap">
@@ -83,12 +89,75 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>我在目前的angular项目中使用bootstrap组件情况比较多，尤其喜欢的情景是：Panel负责列表展示，Modal负责详细数据修改。<br>但目前的痛苦之处是：在HTML结构上，凡是用到了Modal的地方，都要完整写一遍Modal的HTML，并且要定义Modal的ID，业务中如果需要展示隐藏这个Modal,还需要在Controller中调用Bootstrap/Modal的API完成。重复代码很多，而且容易出错。<br>这次优化，我将Modal组件封装成了一个指令，它的头/身/尾分别对应3个简单的子指令，又封装了两个元素指令，用来控制Modal的显示和隐藏(任何具有这些元素的DOM，都具备显示或隐藏某一modal的功能)</p>
-<h4 id="directives-js">directives.js</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">angular.module(<span class="string">'app'</span>, []).directive(</span><br><span class="line">  <span class="string">'momentModal'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">        restrict: <span class="string">'E'</span>,</span><br><span class="line">        transclude: <span class="literal">true</span>,</span><br><span class="line">        replace: <span class="literal">true</span>,</span><br><span class="line">        scope: &#123;</span><br><span class="line">            show : <span class="string">'='</span>,</span><br><span class="line">            close : <span class="string">'='</span></span><br><span class="line">        &#125;,</span><br><span class="line">        template:</span><br><span class="line">            <span class="string">'&lt;div class="modal" style="display: none;"&gt;\</span><br><span class="line">                &lt;div class="modal-dialog"&gt;\</span><br><span class="line">                    &lt;div class="modal-content" ng-transclude&gt;\</span><br><span class="line">                    &lt;/div&gt;\</span><br><span class="line">                &lt;/div&gt;\</span><br><span class="line">            &lt;/div&gt;'</span>,</span><br><span class="line">        link: <span class="function"><span class="keyword">function</span> (<span class="params">scope, ele, attrs</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">var</span> title = attrs.title || <span class="string">''</span>, header;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>(<span class="string">'size'</span> <span class="keyword">in</span> attrs &amp;&amp; ~[<span class="string">'lg'</span>, <span class="string">'sm'</span>].indexOf(attrs.size)) &#123;</span><br><span class="line">                ele.find(<span class="string">'.modal-dialog'</span>).addClass(<span class="string">'modal-'</span> + attrs.size);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(!ele.find(<span class="string">'.modal-header'</span>).length) &#123;</span><br><span class="line">                header = $compile(<span class="string">'&lt;div class="modal-header"&gt;\</span><br><span class="line">                            &lt;a href="javascript:void(0);" moment-modal-close class="pull-right"&gt;&lt;i class="fa fa-times"&gt;&lt;/i&gt;&lt;/a&gt;\</span><br><span class="line">                            &lt;h4 class="modal-title"&gt;'</span> + title + <span class="string">'&lt;/h4&gt;\</span><br><span class="line">                    &lt;/div&gt;'</span>)(scope);</span><br><span class="line">                ele.find(<span class="string">'.modal-content'</span>).prepend(header);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            _.isFunction(scope.show) &amp;&amp; ele.on(<span class="string">'show.bs.modal'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                scope.show();</span><br><span class="line">            &#125;);</span><br><span class="line"></span><br><span class="line">            _.isFunction(scope.hide) &amp;&amp; ele.on(<span class="string">'hide.bs.modal'</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                scope.hide();</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;;</span><br><span class="line">  &#125;).directive(<span class="string">'momentModalHeader'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">            restrict: <span class="string">'E'</span>,</span><br><span class="line">            transclude: <span class="literal">true</span>,</span><br><span class="line">            replace: <span class="literal">true</span>,</span><br><span class="line">            template: <span class="string">'&lt;div class="modal-header" ng-transclude&gt;&lt;/div&gt;'</span></span><br><span class="line">      &#125;</span><br><span class="line">  &#125;)directive(<span class="string">'momentModalBody'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">            restrict: <span class="string">'E'</span>,</span><br><span class="line">            transclude: <span class="literal">true</span>,</span><br><span class="line">            replace: <span class="literal">true</span>,</span><br><span class="line">            template: <span class="string">'&lt;div class="modal-body" ng-transclude&gt;&lt;/div&gt;'</span></span><br><span class="line">      &#125;</span><br><span class="line">  &#125;)directive(<span class="string">'momentModalFooter'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> &#123;</span><br><span class="line">            restrict: <span class="string">'E'</span>,</span><br><span class="line">            transclude: <span class="literal">true</span>,</span><br><span class="line">            replace: <span class="literal">true</span>,</span><br><span class="line">            template: <span class="string">'&lt;div class="modal-footer" ng-transclude&gt;&lt;/div&gt;'</span></span><br><span class="line">      &#125;</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+<h4 id="directives-js">directives.js</h4><pre><code class="Javascript">angular.module(&#39;app&#39;, []).directive(
+  &#39;momentModal&#39;, function() {
+    return {
+        restrict: &#39;E&#39;,
+        transclude: true,
+        replace: true,
+        scope: {
+            show : &#39;=&#39;,
+            close : &#39;=&#39;
+        },
+        template:
+            &#39;&lt;div class=&quot;modal&quot; style=&quot;display: none;&quot;&gt;\
+                &lt;div class=&quot;modal-dialog&quot;&gt;\
+                    &lt;div class=&quot;modal-content&quot; ng-transclude&gt;\
+                    &lt;/div&gt;\
+                &lt;/div&gt;\
+            &lt;/div&gt;&#39;,
+        link: function (scope, ele, attrs) {
+
+            var title = attrs.title || &#39;&#39;, header;
+
+            if(&#39;size&#39; in attrs &amp;&amp; ~[&#39;lg&#39;, &#39;sm&#39;].indexOf(attrs.size)) {
+                ele.find(&#39;.modal-dialog&#39;).addClass(&#39;modal-&#39; + attrs.size);
+            }
+            if(!ele.find(&#39;.modal-header&#39;).length) {
+                header = $compile(&#39;&lt;div class=&quot;modal-header&quot;&gt;\
+                            &lt;a href=&quot;javascript:void(0);&quot; moment-modal-close class=&quot;pull-right&quot;&gt;&lt;i class=&quot;fa fa-times&quot;&gt;&lt;/i&gt;&lt;/a&gt;\
+                            &lt;h4 class=&quot;modal-title&quot;&gt;&#39; + title + &#39;&lt;/h4&gt;\
+                    &lt;/div&gt;&#39;)(scope);
+                ele.find(&#39;.modal-content&#39;).prepend(header);
+            }
+
+            _.isFunction(scope.show) &amp;&amp; ele.on(&#39;show.bs.modal&#39;, function () {
+                scope.show();
+            });
+
+            _.isFunction(scope.hide) &amp;&amp; ele.on(&#39;hide.bs.modal&#39;, function () {
+                scope.hide();
+            });
+        }
+      };
+  }).directive(&#39;momentModalHeader&#39;, function() {
+      return {
+            restrict: &#39;E&#39;,
+            transclude: true,
+            replace: true,
+            template: &#39;&lt;div class=&quot;modal-header&quot; ng-transclude&gt;&lt;/div&gt;&#39;
+      }
+  })directive(&#39;momentModalBody&#39;, function() {
+      return {
+            restrict: &#39;E&#39;,
+            transclude: true,
+            replace: true,
+            template: &#39;&lt;div class=&quot;modal-body&quot; ng-transclude&gt;&lt;/div&gt;&#39;
+      }
+  })directive(&#39;momentModalFooter&#39;, function() {
+      return {
+            restrict: &#39;E&#39;,
+            transclude: true,
+            replace: true,
+            template: &#39;&lt;div class=&quot;modal-footer&quot; ng-transclude&gt;&lt;/div&gt;&#39;
+      }
+  })
+</code></pre>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://renhao.me/2016/01/01/bootstrap-modal-angular-directeves/" data-id="ciqs9ot8d00064ecrzyvhdr8p" class="article-share-link">Share</a>
+      <a data-url="http://renhao.me/2016/01/01/bootstrap-modal-angular-directeves/" data-id="ciqt8tu7w000bm8cr104ndk0o" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Angular/">Angular</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>

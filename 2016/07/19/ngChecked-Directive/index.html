@@ -5,25 +5,31 @@
   
   <title>ngChecked Directive | Easy &amp; Breezy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="问题1&amp;lt;input type=“checkbox” ng-model=“one.is_checked” ng-checked=“one.is_checked&quot;&amp;gt;
-1one.is_checked = 1;
+  <meta name="description" content="问题&amp;lt;input type=“checkbox” ng-model=“one.is_checked” ng-checked=“one.is_checked&amp;quot;&amp;gt;
+
+one.is_checked = 1;
+
 期望checkbox选中，但结果是checkbox没有选中。
-解决方案1&amp;lt;input type=“checkbox” ng-model=“one.is_checked” ng-c">
+解决方案&amp;lt;input type=“checkbox” ng-model=“one.is_checked”">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ngChecked Directive">
 <meta property="og:url" content="http://renhao.me/2016/07/19/ngChecked-Directive/index.html">
 <meta property="og:site_name" content="Easy & Breezy">
-<meta property="og:description" content="问题1&amp;lt;input type=“checkbox” ng-model=“one.is_checked” ng-checked=“one.is_checked&quot;&amp;gt;
-1one.is_checked = 1;
+<meta property="og:description" content="问题&amp;lt;input type=“checkbox” ng-model=“one.is_checked” ng-checked=“one.is_checked&amp;quot;&amp;gt;
+
+one.is_checked = 1;
+
 期望checkbox选中，但结果是checkbox没有选中。
-解决方案1&amp;lt;input type=“checkbox” ng-model=“one.is_checked” ng-c">
+解决方案&amp;lt;input type=“checkbox” ng-model=“one.is_checked”">
 <meta property="og:updated_time" content="2016-07-18T16:54:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ngChecked Directive">
-<meta name="twitter:description" content="问题1&amp;lt;input type=“checkbox” ng-model=“one.is_checked” ng-checked=“one.is_checked&quot;&amp;gt;
-1one.is_checked = 1;
+<meta name="twitter:description" content="问题&amp;lt;input type=“checkbox” ng-model=“one.is_checked” ng-checked=“one.is_checked&amp;quot;&amp;gt;
+
+one.is_checked = 1;
+
 期望checkbox选中，但结果是checkbox没有选中。
-解决方案1&amp;lt;input type=“checkbox” ng-model=“one.is_checked” ng-c">
+解决方案&amp;lt;input type=“checkbox” ng-model=“one.is_checked”">
   
     <link rel="alternative" href="/atom.xml" title="Easy &amp; Breezy" type="application/atom+xml">
   
@@ -34,7 +40,13 @@
   <link rel="stylesheet" href="/css/style.css" type="text/css">
   
 
+  <link href="/prettify/prettify.css" rel="stylesheet" type="text/css">
+
+  <script type="text/javascript" src="/prettify/prettify.js"></script>
+
+
 </head>
+
 <body>
   <div id="container">
     <div id="wrap">
@@ -91,21 +103,31 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="问题">问题</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">“checkbox”</span> <span class="attribute">ng-model</span>=<span class="value">“one.is_checked”</span> <span class="attribute">ng-checked</span>=<span class="value">“one.is_checked"</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">one.is_checked = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+        <h3 id="问题">问题</h3><pre><code class="html">&lt;input type=“checkbox” ng-model=“one.is_checked” ng-checked=“one.is_checked&quot;&gt;
+</code></pre>
+<pre><code class="Javascript">one.is_checked = 1;
+</code></pre>
 <p>期望checkbox选中，但结果是checkbox没有选中。</p>
-<h3 id="解决方案">解决方案</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">“checkbox”</span> <span class="attribute">ng-model</span>=<span class="value">“one.is_checked”</span> <span class="attribute">ng-checked</span>=<span class="value">“one.is_checked"</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">one.is_checked = <span class="literal">true</span>;</span><br></pre></td></tr></table></figure>
-<p>或<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">“checkbox”</span> <span class="attribute">ng-model</span>=<span class="value">“one.is_checked”</span> <span class="attribute">ng-true-value</span>=<span class="value">“1"</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">one.is_checked = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
-<p>或<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">input</span> <span class="attribute">type</span>=<span class="value">“checkbox”</span> <span class="attribute">ng-checked</span>=<span class="value">“one.is_checked”</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">one.is_checked = <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="解决方案">解决方案</h3><pre><code class="html">&lt;input type=“checkbox” ng-model=“one.is_checked” ng-checked=“one.is_checked&quot;&gt;
+</code></pre>
+<pre><code class="Javascript">one.is_checked = true;
+</code></pre>
+<p>或</p>
+<pre><code class="html">&lt;input type=“checkbox” ng-model=“one.is_checked” ng-true-value=“1&quot;&gt;
+</code></pre>
+<pre><code class="Javascript">one.is_checked = 1;
+</code></pre>
+<p>或</p>
+<pre><code class="html">&lt;input type=“checkbox” ng-checked=“one.is_checked”&gt;
+</code></pre>
+<pre><code class="Javascript">one.is_checked = 1;
+</code></pre>
 <h3 id="原理">原理</h3><p>Angular官方建议ng-model与ng-checked不可同时使用，否则会出现不可预估的结果。<br>ngChecked是为解决记录checkbox的checked属性而设计，表达式求值可以决定当前状态是否选中。而ngModel仅在接到布尔值时候才控制checkbox的选中状态，否则需要指定真假值的具体形式</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://renhao.me/2016/07/19/ngChecked-Directive/" data-id="ciqs9upj900006ccr1h29cnaf" class="article-share-link">Share</a>
+      <a data-url="http://renhao.me/2016/07/19/ngChecked-Directive/" data-id="ciqt8tu7q0003m8crdfiaijkp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Angular/">Angular</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>

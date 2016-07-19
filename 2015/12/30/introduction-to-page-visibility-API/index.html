@@ -6,18 +6,30 @@
   <title>Javascript判断当前页面/标签是否正在被用户浏览 | Easy &amp; Breezy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="W3C规范规定了PageVisibility API用以帮助人们判断当前页面/标签是否正在被用户浏览（即页面是否可见），当页面隐藏和现实间切换时，触发visibilitychange事件，通过监听这一事件，可以决策当前页面的行为。
-12345678910111213141516171819202122232425262728293031323334353637(function() &amp;#123;">
+(function() {
+  var hidden = &amp;quot;hidden&amp;quot;;
+
+  // Standards:
+  if (hidden in do">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Javascript判断当前页面/标签是否正在被用户浏览">
 <meta property="og:url" content="http://renhao.me/2015/12/30/introduction-to-page-visibility-API/index.html">
 <meta property="og:site_name" content="Easy & Breezy">
 <meta property="og:description" content="W3C规范规定了PageVisibility API用以帮助人们判断当前页面/标签是否正在被用户浏览（即页面是否可见），当页面隐藏和现实间切换时，触发visibilitychange事件，通过监听这一事件，可以决策当前页面的行为。
-12345678910111213141516171819202122232425262728293031323334353637(function() &amp;#123;">
+(function() {
+  var hidden = &amp;quot;hidden&amp;quot;;
+
+  // Standards:
+  if (hidden in do">
 <meta property="og:updated_time" content="2015-12-30T11:25:37.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Javascript判断当前页面/标签是否正在被用户浏览">
 <meta name="twitter:description" content="W3C规范规定了PageVisibility API用以帮助人们判断当前页面/标签是否正在被用户浏览（即页面是否可见），当页面隐藏和现实间切换时，触发visibilitychange事件，通过监听这一事件，可以决策当前页面的行为。
-12345678910111213141516171819202122232425262728293031323334353637(function() &amp;#123;">
+(function() {
+  var hidden = &amp;quot;hidden&amp;quot;;
+
+  // Standards:
+  if (hidden in do">
   
     <link rel="alternative" href="/atom.xml" title="Easy &amp; Breezy" type="application/atom+xml">
   
@@ -28,7 +40,13 @@
   <link rel="stylesheet" href="/css/style.css" type="text/css">
   
 
+  <link href="/prettify/prettify.css" rel="stylesheet" type="text/css">
+
+  <script type="text/javascript" src="/prettify/prettify.js"></script>
+
+
 </head>
+
 <body>
   <div id="container">
     <div id="wrap">
@@ -86,12 +104,49 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><a href="http://www.w3.org/TR/page-visibility/" target="_blank" rel="external">W3C</a>规范规定了<a href="https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API" target="_blank" rel="external">PageVisibility API</a>用以帮助人们判断当前页面/标签是否正在被用户浏览（即页面是否可见），当页面隐藏和现实间切换时，触发visibilitychange事件，通过监听这一事件，可以决策当前页面的行为。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> hidden = <span class="string">"hidden"</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Standards:</span></span><br><span class="line">  <span class="keyword">if</span> (hidden <span class="keyword">in</span> <span class="built_in">document</span>)</span><br><span class="line">    <span class="built_in">document</span>.addEventListener(<span class="string">"visibilitychange"</span>, onchange);</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span> ((hidden = <span class="string">"mozHidden"</span>) <span class="keyword">in</span> <span class="built_in">document</span>)</span><br><span class="line">    <span class="built_in">document</span>.addEventListener(<span class="string">"mozvisibilitychange"</span>, onchange);</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span> ((hidden = <span class="string">"webkitHidden"</span>) <span class="keyword">in</span> <span class="built_in">document</span>)</span><br><span class="line">    <span class="built_in">document</span>.addEventListener(<span class="string">"webkitvisibilitychange"</span>, onchange);</span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span> ((hidden = <span class="string">"msHidden"</span>) <span class="keyword">in</span> <span class="built_in">document</span>)</span><br><span class="line">    <span class="built_in">document</span>.addEventListener(<span class="string">"msvisibilitychange"</span>, onchange);</span><br><span class="line">  <span class="comment">// IE 9 and lower:</span></span><br><span class="line">  <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"onfocusin"</span> <span class="keyword">in</span> <span class="built_in">document</span>)</span><br><span class="line">    <span class="built_in">document</span>.onfocusin = <span class="built_in">document</span>.onfocusout = onchange;</span><br><span class="line">  <span class="comment">// All others:</span></span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">    <span class="built_in">window</span>.onpageshow = <span class="built_in">window</span>.onpagehide</span><br><span class="line">    = <span class="built_in">window</span>.onfocus = <span class="built_in">window</span>.onblur = onchange;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">onchange</span> (<span class="params">evt</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> v = <span class="string">"visible"</span>, h = <span class="string">"hidden"</span>,</span><br><span class="line">        evtMap = &#123;</span><br><span class="line">          focus:v, focusin:v, pageshow:v, blur:h, focusout:h, pagehide:h</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">    evt = evt || <span class="built_in">window</span>.event;</span><br><span class="line">    <span class="keyword">if</span> (evt.type <span class="keyword">in</span> evtMap)</span><br><span class="line">      <span class="built_in">document</span>.body.className = evtMap[evt.type];</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      <span class="built_in">document</span>.body.className = <span class="keyword">this</span>[hidden] ? <span class="string">"hidden"</span> : <span class="string">"visible"</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// set the initial state (but only if browser supports the Page Visibility API)</span></span><br><span class="line">  <span class="keyword">if</span>( <span class="built_in">document</span>[hidden] !== <span class="literal">undefined</span> )</span><br><span class="line">    onchange(&#123;type: <span class="built_in">document</span>[hidden] ? <span class="string">"blur"</span> : <span class="string">"focus"</span>&#125;);</span><br><span class="line">&#125;)();</span><br></pre></td></tr></table></figure>
+<pre><code class="Javascript">(function() {
+  var hidden = &quot;hidden&quot;;
+
+  // Standards:
+  if (hidden in document)
+    document.addEventListener(&quot;visibilitychange&quot;, onchange);
+  else if ((hidden = &quot;mozHidden&quot;) in document)
+    document.addEventListener(&quot;mozvisibilitychange&quot;, onchange);
+  else if ((hidden = &quot;webkitHidden&quot;) in document)
+    document.addEventListener(&quot;webkitvisibilitychange&quot;, onchange);
+  else if ((hidden = &quot;msHidden&quot;) in document)
+    document.addEventListener(&quot;msvisibilitychange&quot;, onchange);
+  // IE 9 and lower:
+  else if (&quot;onfocusin&quot; in document)
+    document.onfocusin = document.onfocusout = onchange;
+  // All others:
+  else
+    window.onpageshow = window.onpagehide
+    = window.onfocus = window.onblur = onchange;
+
+  function onchange (evt) {
+    var v = &quot;visible&quot;, h = &quot;hidden&quot;,
+        evtMap = {
+          focus:v, focusin:v, pageshow:v, blur:h, focusout:h, pagehide:h
+        };
+
+    evt = evt || window.event;
+    if (evt.type in evtMap)
+      document.body.className = evtMap[evt.type];
+    else
+      document.body.className = this[hidden] ? &quot;hidden&quot; : &quot;visible&quot;;
+  }
+
+  // set the initial state (but only if browser supports the Page Visibility API)
+  if( document[hidden] !== undefined )
+    onchange({type: document[hidden] ? &quot;blur&quot; : &quot;focus&quot;});
+})();
+</code></pre>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://renhao.me/2015/12/30/introduction-to-page-visibility-API/" data-id="ciqs9ot8f000b4ecrr6nb3fav" class="article-share-link">Share</a>
+      <a data-url="http://renhao.me/2015/12/30/introduction-to-page-visibility-API/" data-id="ciqt8tu7y000em8cr68dxhlhr" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/">HTML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
