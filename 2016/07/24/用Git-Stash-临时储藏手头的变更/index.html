@@ -3,17 +3,42 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2015 | Easy &amp; Breezy</title>
+  <title>用Git Stash 临时储藏手头的变更 | Easy &amp; Breezy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Easy & Breezy">
-<meta property="og:url" content="http://renhao.me/archives/2015/index.html">
+  <meta name="description" content="当修改当前分支时候，需要切换到其他分支的时候。可以使用 git stash 命令储藏当前分支的变更。
+使用情景：正处于一个分支的开发中，得知此分支有最近提交，用git pull获取最新提交的时候可能有冲突，此时可以用
+git stash
+git pull
+git stash pop 获取
+
+正处于一个分支的开发中，需要紧急修复当前分支上的bug，可以
+git stash
+fix some bugs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用Git Stash 临时储藏手头的变更">
+<meta property="og:url" content="http://renhao.me/2016/07/24/用Git-Stash-临时储藏手头的变更/index.html">
 <meta property="og:site_name" content="Easy & Breezy">
-<meta property="og:description">
+<meta property="og:description" content="当修改当前分支时候，需要切换到其他分支的时候。可以使用 git stash 命令储藏当前分支的变更。
+使用情景：正处于一个分支的开发中，得知此分支有最近提交，用git pull获取最新提交的时候可能有冲突，此时可以用
+git stash
+git pull
+git stash pop 获取
+
+正处于一个分支的开发中，需要紧急修复当前分支上的bug，可以
+git stash
+fix some bugs">
+<meta property="og:updated_time" content="2016-07-24T09:43:47.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Easy & Breezy">
-<meta name="twitter:description">
+<meta name="twitter:title" content="用Git Stash 临时储藏手头的变更">
+<meta name="twitter:description" content="当修改当前分支时候，需要切换到其他分支的时候。可以使用 git stash 命令储藏当前分支的变更。
+使用情景：正处于一个分支的开发中，得知此分支有最近提交，用git pull获取最新提交的时候可能有冲突，此时可以用
+git stash
+git pull
+git stash pop 获取
+
+正处于一个分支的开发中，需要紧急修复当前分支上的bug，可以
+git stash
+fix some bugs">
   
     <link rel="alternative" href="/atom.xml" title="Easy &amp; Breezy" type="application/atom+xml">
   
@@ -65,58 +90,75 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2015" class="archive-year">2015</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/12/30/introduction-to-page-visibility-API/" class="archive-article-date">
-  <time datetime="2015-12-30T07:31:25.000Z" itemprop="datePublished">Dec 30</time>
+        <section id="main"><article id="post-用Git-Stash-临时储藏手头的变更" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/07/24/用Git-Stash-临时储藏手头的变更/" class="article-date">
+  <time datetime="2016-07-24T09:26:29.000Z" itemprop="datePublished">2016-07-24</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/12/30/introduction-to-page-visibility-API/">Javascript判断当前页面/标签是否正在被用户浏览</a>
+    <h1 class="article-title" itemprop="name">
+      用Git Stash 临时储藏手头的变更
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/07/14/mynewpost/" class="archive-article-date">
-  <time datetime="2015-07-14T08:05:59.000Z" itemprop="datePublished">Jul 14</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/07/14/mynewpost/">Git分支规划的最佳实践</a>
-    </h1>
-  
+        <p>当修改当前分支时候，需要切换到其他分支的时候。可以使用 git stash 命令储藏当前分支的变更。</p>
+<h3 id="使用情景：">使用情景：</h3><p>正处于一个分支的开发中，得知此分支有最近提交，用git pull获取最新提交的时候可能有冲突，此时可以用</p>
+<pre><code class="git">git stash
+git pull
+git stash pop 获取
+</code></pre>
+<p>正处于一个分支的开发中，需要紧急修复当前分支上的bug，可以</p>
+<pre><code class="git">git stash
+fix some bugs…
+git commit -m ‘fix bug&#39;
+git stash pop
+</code></pre>
+<h3 id="命令：">命令：</h3><pre><code class="git">git stash 储藏当前分支
+git stash save -m messages… 附带message信息标记当前的储藏
+git stash list 查看储藏列表
+git stash pop 应用最近的储藏，并在储藏队列中删除他
+git stash apply [&lt;stash&gt;] 应用某一个储藏，并不删除他
+git stash show [&lt;stash&gt;] 查看stash的详情，其中变更的文件详情
+git stash clear 清除stash堆栈，不可逆操作
+git stash drop [&lt;stash&gt;] 删除某一stash
+(不解) git branch &lt;branch_name&gt; [&lt;stash&gt;] 用当前的stash创建一个新分支并切换到这个分支上面
+</code></pre>
+<h4 id="git_branch_还不知道如何使用,_文档原文如下:">git branch 还不知道如何使用, 文档原文如下:</h4><p>Creates and checks out a new branch named <branchname> starting from the commit at which the <stash> was originally created, applies the changes recorded in <stash> to the new working tree and index. If that succeeds, and <stash> is a reference of the form stash@{<revision>}, it then drops the <stash>. When no <stash> is given, applies the latest one.<br>This is useful if the branch on which you ran git stash save has changed enough that git stash apply fails due to conflicts. Since the stash is applied on top of the commit that was HEAD at the time git stash was run, it restores the originally stashed state with no conflicts.</stash></stash></revision></stash></stash></stash></branchname></p>
 
-    </header>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://renhao.me/2016/07/24/用Git-Stash-临时储藏手头的变更/" data-id="cir0etu540006q8cr0rmslyvc" class="article-share-link">Share</a>
+      
+      
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/07/19/ngChecked-Directive/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">ngChecked Directive</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
+
 </section>
         
           <aside id="sidebar">
