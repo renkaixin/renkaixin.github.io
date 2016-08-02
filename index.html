@@ -67,6 +67,64 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-用Git迁移不同分支的Commit" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/08/02/用Git迁移不同分支的Commit/" class="article-date">
+  <time datetime="2016-08-02T10:46:06.000Z" itemprop="datePublished">2016-08-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/02/用Git迁移不同分支的Commit/">用Git迁移不同分支的Commit</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="问题：">问题：</h3><p>在某一新特性feature/A中开发，此时线上有bug需要紧急修复，慌忙中未切换到master分支，而是修改后提交到了feature/A，此时需要将这个commit挪到master中然后提交并push</p>
+<h3 id="解决方案">解决方案</h3><ol>
+<li>git-log 查找需要迁移的commit<pre><code class="bash">git checkout feature/A
+git log --graph --decorate --pretty=oneline --abbrev-commit
+</code></pre>
+</li>
+<li>git cherry-pick 应用迁移出的commit<pre><code class="bash">// 选中需要迁移的commit号 3f90fe7
+git checkout master
+git cherry-pick 3f90fe7
+git push origin
+// 修复完毕
+</code></pre>
+</li>
+<li>(可选) reset误提交的commit<pre><code class="bash">//如果需要去 feature/A中撤销这次提交
+git checkout feature/A
+// 4da72e5 是被cherry-pick走的上一个版本号
+git reset --hard 4da72e5
+</code></pre>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://renhao.me/2016/08/02/用Git迁移不同分支的Commit/" data-id="cirdcbsq90006m6crkoneoc43" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-用Git-Stash-临时储藏手头的变更" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/07/24/用Git-Stash-临时储藏手头的变更/" class="article-date">
@@ -116,7 +174,7 @@ git stash drop [&lt;stash&gt;] 删除某一stash
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://renhao.me/2016/07/24/用Git-Stash-临时储藏手头的变更/" data-id="cir0u3i9f0006g5crb4sv0ple" class="article-share-link">Share</a>
+      <a data-url="http://renhao.me/2016/07/24/用Git-Stash-临时储藏手头的变更/" data-id="cirdcbsqc0007m6crmchg6fi1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>
@@ -174,7 +232,7 @@ git stash drop [&lt;stash&gt;] 删除某一stash
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://renhao.me/2016/07/19/ngChecked-Directive/" data-id="cir0u3i9l0008g5cr2z3psm85" class="article-share-link">Share</a>
+      <a data-url="http://renhao.me/2016/07/19/ngChecked-Directive/" data-id="cirdcbsqe0009m6crx1bevywe" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Angular/">Angular</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
@@ -217,7 +275,7 @@ git stash drop [&lt;stash&gt;] 删除某一stash
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://renhao.me/2016/01/11/talk-about-life/" data-id="cir0u3i9p000cg5creblw5yjj" class="article-share-link">Share</a>
+      <a data-url="http://renhao.me/2016/01/11/talk-about-life/" data-id="cirdcbsqg000dm6cr1o6zck63" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Life/">Life</a></li></ul>
@@ -320,7 +378,7 @@ git stash drop [&lt;stash&gt;] 删除某一stash
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://renhao.me/2016/01/01/bootstrap-modal-angular-directeves/" data-id="cir0u3i9u000fg5cr5rjac0mv" class="article-share-link">Share</a>
+      <a data-url="http://renhao.me/2016/01/01/bootstrap-modal-angular-directeves/" data-id="cirdcbsqh000gm6cr2ot5tf3j" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Angular/">Angular</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
@@ -397,7 +455,7 @@ git stash drop [&lt;stash&gt;] 删除某一stash
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://renhao.me/2015/12/30/introduction-to-page-visibility-API/" data-id="cir0u3ia0000ig5crdpxjs3u0" class="article-share-link">Share</a>
+      <a data-url="http://renhao.me/2015/12/30/introduction-to-page-visibility-API/" data-id="cirdcbsqj000jm6crppoi54hc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/">HTML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
@@ -530,7 +588,7 @@ git branch -d hotfix-1.2.1
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://renhao.me/2015/07/14/mynewpost/" data-id="cir0u3i950003g5crk6t5fjlz" class="article-share-link">Share</a>
+      <a data-url="http://renhao.me/2015/07/14/mynewpost/" data-id="cirdcbspy0003m6crv0bkd4bd" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>
@@ -553,7 +611,7 @@ git branch -d hotfix-1.2.1
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Angular/">Angular</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Life/">Life</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Angular/">Angular</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Life/">Life</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -562,7 +620,7 @@ git branch -d hotfix-1.2.1
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Angular/" style="font-size: 15px;">Angular</a> <a href="/tags/Git/" style="font-size: 15px;">Git</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Javascript/" style="font-size: 20px;">Javascript</a> <a href="/tags/Life/" style="font-size: 10px;">Life</a>
+      <a href="/tags/Angular/" style="font-size: 15px;">Angular</a> <a href="/tags/Git/" style="font-size: 20px;">Git</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Javascript/" style="font-size: 20px;">Javascript</a> <a href="/tags/Life/" style="font-size: 10px;">Life</a>
     </div>
   </div>
 
@@ -571,7 +629,7 @@ git branch -d hotfix-1.2.1
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -581,6 +639,10 @@ git branch -d hotfix-1.2.1
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2016/08/02/用Git迁移不同分支的Commit/">用Git迁移不同分支的Commit</a>
+          </li>
         
           <li>
             <a href="/2016/07/24/用Git-Stash-临时储藏手头的变更/">用Git Stash 临时储藏手头的变更</a>
@@ -596,10 +658,6 @@ git branch -d hotfix-1.2.1
         
           <li>
             <a href="/2016/01/01/bootstrap-modal-angular-directeves/">把Bootstrap的Modal组件封装成Angular的Directive</a>
-          </li>
-        
-          <li>
-            <a href="/2015/12/30/introduction-to-page-visibility-API/">Javascript判断当前页面/标签是否正在被用户浏览</a>
           </li>
         
       </ul>
