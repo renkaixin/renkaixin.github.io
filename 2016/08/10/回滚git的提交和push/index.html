@@ -3,42 +3,48 @@
 <head>
   <meta charset="utf-8">
   
-  <title>用Git Stash 临时储藏手头的变更 | Easy &amp; Breezy</title>
+  <title>回滚git的提交和push | Easy &amp; Breezy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="当修改当前分支时候，需要切换到其他分支的时候。可以使用 git stash 命令储藏当前分支的变更。
-使用情景：正处于一个分支的开发中，得知此分支有最近提交，用git pull获取最新提交的时候可能有冲突，此时可以用
-git stash
-git pull
-git stash pop 获取
+  <meta name="description" content="问题：开发中提交了错误的代码，并且将这个commit push到远端Git Repo中。
+解决方案假设错误的提交版本号是ba65c34, 其parent是c4375469
+方案1：
+git revert ba65c34
+git push origin
 
-正处于一个分支的开发中，需要紧急修复当前分支上的bug，可以
-git stash
-fix some bugs">
+方案2
+git reset c4375469
+git push origin -f
+
+方案2优点：分支上有更干净的历史（不会呈现错误的commit">
 <meta property="og:type" content="article">
-<meta property="og:title" content="用Git Stash 临时储藏手头的变更">
-<meta property="og:url" content="http://renhao.me/2016/07/24/用Git-Stash-临时储藏手头的变更/index.html">
+<meta property="og:title" content="回滚git的提交和push">
+<meta property="og:url" content="http://renhao.me/2016/08/10/回滚git的提交和push/index.html">
 <meta property="og:site_name" content="Easy & Breezy">
-<meta property="og:description" content="当修改当前分支时候，需要切换到其他分支的时候。可以使用 git stash 命令储藏当前分支的变更。
-使用情景：正处于一个分支的开发中，得知此分支有最近提交，用git pull获取最新提交的时候可能有冲突，此时可以用
-git stash
-git pull
-git stash pop 获取
+<meta property="og:description" content="问题：开发中提交了错误的代码，并且将这个commit push到远端Git Repo中。
+解决方案假设错误的提交版本号是ba65c34, 其parent是c4375469
+方案1：
+git revert ba65c34
+git push origin
 
-正处于一个分支的开发中，需要紧急修复当前分支上的bug，可以
-git stash
-fix some bugs">
-<meta property="og:updated_time" content="2016-07-24T16:43:37.000Z">
+方案2
+git reset c4375469
+git push origin -f
+
+方案2优点：分支上有更干净的历史（不会呈现错误的commit">
+<meta property="og:updated_time" content="2016-08-10T03:04:34.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="用Git Stash 临时储藏手头的变更">
-<meta name="twitter:description" content="当修改当前分支时候，需要切换到其他分支的时候。可以使用 git stash 命令储藏当前分支的变更。
-使用情景：正处于一个分支的开发中，得知此分支有最近提交，用git pull获取最新提交的时候可能有冲突，此时可以用
-git stash
-git pull
-git stash pop 获取
+<meta name="twitter:title" content="回滚git的提交和push">
+<meta name="twitter:description" content="问题：开发中提交了错误的代码，并且将这个commit push到远端Git Repo中。
+解决方案假设错误的提交版本号是ba65c34, 其parent是c4375469
+方案1：
+git revert ba65c34
+git push origin
 
-正处于一个分支的开发中，需要紧急修复当前分支上的bug，可以
-git stash
-fix some bugs">
+方案2
+git reset c4375469
+git push origin -f
+
+方案2优点：分支上有更干净的历史（不会呈现错误的commit">
   
     <link rel="alternative" href="/atom.xml" title="Easy &amp; Breezy" type="application/atom+xml">
   
@@ -90,10 +96,10 @@ fix some bugs">
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-用Git-Stash-临时储藏手头的变更" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-回滚git的提交和push" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/07/24/用Git-Stash-临时储藏手头的变更/" class="article-date">
-  <time datetime="2016-07-24T09:26:29.000Z" itemprop="datePublished">2016-07-24</time>
+    <a href="/2016/08/10/回滚git的提交和push/" class="article-date">
+  <time datetime="2016-08-10T02:43:00.000Z" itemprop="datePublished">2016-08-10</time>
 </a>
     
   </div>
@@ -104,7 +110,7 @@ fix some bugs">
         
   
     <h1 class="article-title" itemprop="name">
-      用Git Stash 临时储藏手头的变更
+      回滚git的提交和push
     </h1>
   
 
@@ -112,34 +118,22 @@ fix some bugs">
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>当修改当前分支时候，需要切换到其他分支的时候。可以使用 git stash 命令储藏当前分支的变更。</p>
-<h3 id="使用情景：">使用情景：</h3><p>正处于一个分支的开发中，得知此分支有最近提交，用git pull获取最新提交的时候可能有冲突，此时可以用</p>
-<pre><code class="git">git stash
-git pull
-git stash pop 获取
+        <h3 id="问题：">问题：</h3><p>开发中提交了错误的代码，并且将这个commit push到远端Git Repo中。</p>
+<h3 id="解决方案">解决方案</h3><p>假设错误的提交版本号是ba65c34, 其parent是c4375469</p>
+<p>方案1：</p>
+<pre><code class="bash">git revert ba65c34
+git push origin
 </code></pre>
-<p>正处于一个分支的开发中，需要紧急修复当前分支上的bug，可以</p>
-<pre><code class="git">git stash
-fix some bugs…
-git commit -m fix bug
-git stash pop
+<p>方案2</p>
+<pre><code class="bash">git reset c4375469
+git push origin -f
 </code></pre>
-<h3 id="命令：">命令：</h3><pre><code class="git">git stash 储藏当前分支
-git stash save -m messages… 附带message信息标记当前的储藏
-git stash list 查看储藏列表
-git stash pop 应用最近的储藏，并在储藏队列中删除他
-git stash apply [&lt;stash&gt;] 应用某一个储藏，并不删除他
-git stash show [&lt;stash&gt;] 查看stash的详情，其中变更的文件详情
-git stash clear 清除stash堆栈，不可逆操作
-git stash drop [&lt;stash&gt;] 删除某一stash
-(不解) git branch &lt;branch_name&gt; [&lt;stash&gt;] 用当前的stash创建一个新分支并切换到这个分支上面
-</code></pre>
-<h4 id="git_branch_还不知道如何使用,_文档原文如下:">git branch 还不知道如何使用, 文档原文如下:</h4><p>Creates and checks out a new branch named <branchname> starting from the commit at which the <stash> was originally created, applies the changes recorded in <stash> to the new working tree and index. If that succeeds, and <stash> is a reference of the form stash@{<revision>}, it then drops the <stash>. When no <stash> is given, applies the latest one.<br>This is useful if the branch on which you ran git stash save has changed enough that git stash apply fails due to conflicts. Since the stash is applied on top of the commit that was HEAD at the time git stash was run, it restores the originally stashed state with no conflicts.</stash></stash></revision></stash></stash></stash></branchname></p>
+<p>方案2优点：分支上有更干净的历史（不会呈现错误的commit和revert commit）<br>方案2缺点：<br>1.强制push的瞬间如果有组员提交了代码到同一分支，会被冲掉<br>2.如果组员pull了错误的代码，他将不知道里面有问题且已经修复，如果用方案1他可以在remote的分支历史上看到</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://renhao.me/2016/07/24/用Git-Stash-临时储藏手头的变更/" data-id="cirobcnc3000as9cr5bh2xrzb" class="article-share-link">Share</a>
+      <a data-url="http://renhao.me/2016/08/10/回滚git的提交和push/" data-id="cirobcnc00006s9crvlko1362" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>
@@ -150,19 +144,10 @@ git stash drop [&lt;stash&gt;] 删除某一stash
     
 <nav id="article-nav">
   
-    <a href="/2016/08/02/用Git迁移不同分支的Commit/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          用Git迁移不同分支的Commit
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/07/19/ngChecked-Directive/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2016/08/02/用Git迁移不同分支的Commit/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">ngChecked Directive</div>
+      <div class="article-nav-title">用Git迁移不同分支的Commit</div>
     </a>
   
 </nav>
