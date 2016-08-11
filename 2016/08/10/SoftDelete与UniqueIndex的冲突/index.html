@@ -3,17 +3,111 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Tag: Life | Easy &amp; Breezy</title>
+  <title>SoftDelete与UniqueIndex的冲突 | Easy &amp; Breezy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Easy & Breezy">
-<meta property="og:url" content="http://renhao.me/tags/Life/index.html">
+  <meta name="description" content="问题：用数据表A的列del标记单条记录是否删除(通常1是删除)，是业务处理中的常用手段，简称Soft Delete。但如果数据表中对某些字段有唯一键约束，就会产生头疼的问题。
+考虑如下的表
+
+
+phone
+version
+price
+del
+
+
+
+
+iPhone
+4S
+2000
+0
+
+
+iPhone
+4S
+3000
+1
+
+
+Galaxy
+S4
+4000
+0
+
+
+
+这张表如果建立了phone ver">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SoftDelete与UniqueIndex的冲突">
+<meta property="og:url" content="http://renhao.me/2016/08/10/SoftDelete与UniqueIndex的冲突/index.html">
 <meta property="og:site_name" content="Easy & Breezy">
-<meta property="og:description">
+<meta property="og:description" content="问题：用数据表A的列del标记单条记录是否删除(通常1是删除)，是业务处理中的常用手段，简称Soft Delete。但如果数据表中对某些字段有唯一键约束，就会产生头疼的问题。
+考虑如下的表
+
+
+phone
+version
+price
+del
+
+
+
+
+iPhone
+4S
+2000
+0
+
+
+iPhone
+4S
+3000
+1
+
+
+Galaxy
+S4
+4000
+0
+
+
+
+这张表如果建立了phone ver">
+<meta property="og:updated_time" content="2016-08-11T07:12:20.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Easy & Breezy">
-<meta name="twitter:description">
+<meta name="twitter:title" content="SoftDelete与UniqueIndex的冲突">
+<meta name="twitter:description" content="问题：用数据表A的列del标记单条记录是否删除(通常1是删除)，是业务处理中的常用手段，简称Soft Delete。但如果数据表中对某些字段有唯一键约束，就会产生头疼的问题。
+考虑如下的表
+
+
+phone
+version
+price
+del
+
+
+
+
+iPhone
+4S
+2000
+0
+
+
+iPhone
+4S
+3000
+1
+
+
+Galaxy
+S4
+4000
+0
+
+
+
+这张表如果建立了phone ver">
   
     <link rel="alternative" href="/atom.xml" title="Easy &amp; Breezy" type="application/atom+xml">
   
@@ -65,39 +159,88 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/01/11/talk-about-life/" class="archive-article-date">
-  <time datetime="2016-01-11T05:21:17.000Z" itemprop="datePublished">Jan 11</time>
+        <section id="main"><article id="post-SoftDelete与UniqueIndex的冲突" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/08/10/SoftDelete与UniqueIndex的冲突/" class="article-date">
+  <time datetime="2016-08-10T09:43:31.000Z" itemprop="datePublished">2016-08-10</time>
 </a>
-      
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/01/11/talk-about-life/">小谈生活</a>
+    <h1 class="article-title" itemprop="name">
+      SoftDelete与UniqueIndex的冲突
     </h1>
   
 
-    </header>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="问题：">问题：</h2><p>用数据表A的列del标记单条记录是否删除(通常1是删除)，是业务处理中的常用手段，简称Soft Delete。<br>但如果数据表中对某些字段有唯一键约束，就会产生头疼的问题。</p>
+<h4 id="考虑如下的表">考虑如下的表</h4><table>
+<thead>
+<tr>
+<th style="text-align:center">phone</th>
+<th style="text-align:center">version</th>
+<th style="text-align:center">price</th>
+<th style="text-align:center">del</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">iPhone</td>
+<td style="text-align:center">4S</td>
+<td style="text-align:center">2000</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">iPhone</td>
+<td style="text-align:center">4S</td>
+<td style="text-align:center">3000</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">Galaxy</td>
+<td style="text-align:center">S4</td>
+<td style="text-align:center">4000</td>
+<td style="text-align:center">0</td>
+</tr>
+</tbody>
+</table>
+<p>这张表如果建立了phone version的唯一键，就代表了iPhone 4S仅能拥有一种价格。<br>如果希望运用SoftDelete将被删除的数据保存下来，将会被唯一约束从而无法保存。<br>如果同时建立了phone version del的唯一键，将不能同时有2条删除的记录。</p>
+<h2 id="解决方案">解决方案</h2><h4 id="1-_(在Mysql环境中)_不设置del而是设置activate">1. (在Mysql环境中) 不设置del而是设置activate</h4><p>mysql对待null值用比较奇怪的模式，认为每个null是唯一的，查询子句中如果出现<code>where a = null</code>是无法查询预期结果的(必须使用<code>a IS NULL</code>)<br>活跃记录的activate设为1，删除记录activate设为null。</p>
+<h4 id="2-_(非Mysql环境)_建立有条件的唯一约束">2. (非Mysql环境) 建立有条件的唯一约束</h4><p><code>ADD CONSTRAINT .... WHERE deleted != 1</code> 仅将唯一键约束建立在活跃的记录上</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://renhao.me/2016/08/10/SoftDelete与UniqueIndex的冲突/" data-id="cirpzijyt0008pocryhlvc8og" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Database/">Database</a></li></ul>
+
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/08/10/回滚git的提交和push/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">回滚git的提交和push</div>
+    </a>
+  
+</nav>
+
+  
 </article>
-  
-  
-    </div></section>
-  
+
 </section>
         
           <aside id="sidebar">

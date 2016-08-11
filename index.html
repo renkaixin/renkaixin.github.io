@@ -67,6 +67,78 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-SoftDelete与UniqueIndex的冲突" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/08/10/SoftDelete与UniqueIndex的冲突/" class="article-date">
+  <time datetime="2016-08-10T09:43:31.000Z" itemprop="datePublished">2016-08-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/10/SoftDelete与UniqueIndex的冲突/">SoftDelete与UniqueIndex的冲突</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="问题：">问题：</h2><p>用数据表A的列del标记单条记录是否删除(通常1是删除)，是业务处理中的常用手段，简称Soft Delete。<br>但如果数据表中对某些字段有唯一键约束，就会产生头疼的问题。</p>
+<h4 id="考虑如下的表">考虑如下的表</h4><table>
+<thead>
+<tr>
+<th style="text-align:center">phone</th>
+<th style="text-align:center">version</th>
+<th style="text-align:center">price</th>
+<th style="text-align:center">del</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">iPhone</td>
+<td style="text-align:center">4S</td>
+<td style="text-align:center">2000</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">iPhone</td>
+<td style="text-align:center">4S</td>
+<td style="text-align:center">3000</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">Galaxy</td>
+<td style="text-align:center">S4</td>
+<td style="text-align:center">4000</td>
+<td style="text-align:center">0</td>
+</tr>
+</tbody>
+</table>
+<p>这张表如果建立了phone version的唯一键，就代表了iPhone 4S仅能拥有一种价格。<br>如果希望运用SoftDelete将被删除的数据保存下来，将会被唯一约束从而无法保存。<br>如果同时建立了phone version del的唯一键，将不能同时有2条删除的记录。</p>
+<h2 id="解决方案">解决方案</h2><h4 id="1-_(在Mysql环境中)_不设置del而是设置activate">1. (在Mysql环境中) 不设置del而是设置activate</h4><p>mysql对待null值用比较奇怪的模式，认为每个null是唯一的，查询子句中如果出现<code>where a = null</code>是无法查询预期结果的(必须使用<code>a IS NULL</code>)<br>活跃记录的activate设为1，删除记录activate设为null。</p>
+<h4 id="2-_(非Mysql环境)_建立有条件的唯一约束">2. (非Mysql环境) 建立有条件的唯一约束</h4><p><code>ADD CONSTRAINT .... WHERE deleted != 1</code> 仅将唯一键约束建立在活跃的记录上</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://renhao.me/2016/08/10/SoftDelete与UniqueIndex的冲突/" data-id="cirpzijyt0008pocryhlvc8og" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Database/">Database</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-回滚git的提交和push" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/08/10/回滚git的提交和push/" class="article-date">
@@ -104,7 +176,7 @@ git push origin -f
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://renhao.me/2016/08/10/回滚git的提交和push/" data-id="cirobcnc00006s9crvlko1362" class="article-share-link">Share</a>
+      <a data-url="http://renhao.me/2016/08/10/回滚git的提交和push/" data-id="cirpzijyr0006pocrutcxg8aq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>
@@ -162,7 +234,7 @@ git reset --hard 4da72e5
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://renhao.me/2016/08/02/用Git迁移不同分支的Commit/" data-id="cirobcnc20008s9crau1xn8nz" class="article-share-link">Share</a>
+      <a data-url="http://renhao.me/2016/08/02/用Git迁移不同分支的Commit/" data-id="cirpzijyv000bpocrwqiedm71" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>
@@ -223,7 +295,7 @@ git stash drop [&lt;stash&gt;] 删除某一stash
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://renhao.me/2016/07/24/用Git-Stash-临时储藏手头的变更/" data-id="cirobcnc3000as9cr5bh2xrzb" class="article-share-link">Share</a>
+      <a data-url="http://renhao.me/2016/07/24/用Git-Stash-临时储藏手头的变更/" data-id="cirpzijyw000dpocr7xn4vu1x" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>
@@ -281,7 +353,7 @@ git stash drop [&lt;stash&gt;] 删除某一stash
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://renhao.me/2016/07/19/ngChecked-Directive/" data-id="cirobcnc5000cs9crr0z32q0t" class="article-share-link">Share</a>
+      <a data-url="http://renhao.me/2016/07/19/ngChecked-Directive/" data-id="cirpzijyy000fpocrys9fjopm" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Angular/">Angular</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
@@ -324,7 +396,7 @@ git stash drop [&lt;stash&gt;] 删除某一stash
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://renhao.me/2016/01/11/talk-about-life/" data-id="cirobcnc7000gs9crgb6ku6b9" class="article-share-link">Share</a>
+      <a data-url="http://renhao.me/2016/01/11/talk-about-life/" data-id="cirpzijz3000jpocrack2zpw5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Life/">Life</a></li></ul>
@@ -427,7 +499,7 @@ git stash drop [&lt;stash&gt;] 删除某一stash
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://renhao.me/2016/01/01/bootstrap-modal-angular-directeves/" data-id="cirobcnc9000js9cr98rqj3yw" class="article-share-link">Share</a>
+      <a data-url="http://renhao.me/2016/01/01/bootstrap-modal-angular-directeves/" data-id="cirpzijz6000mpocrvvbeluxo" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Angular/">Angular</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
@@ -504,7 +576,7 @@ git stash drop [&lt;stash&gt;] 删除某一stash
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://renhao.me/2015/12/30/introduction-to-page-visibility-API/" data-id="cirobcncc000ms9crs144vyrh" class="article-share-link">Share</a>
+      <a data-url="http://renhao.me/2015/12/30/introduction-to-page-visibility-API/" data-id="cirpzijzc000ppocr6wkb4w2z" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/">HTML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
@@ -637,7 +709,7 @@ git branch -d hotfix-1.2.1
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://renhao.me/2015/07/14/mynewpost/" data-id="cirobcnbx0003s9crs5fp3o8r" class="article-share-link">Share</a>
+      <a data-url="http://renhao.me/2015/07/14/mynewpost/" data-id="cirpzijyi0003pocrq7jjkiln" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>
@@ -660,7 +732,7 @@ git branch -d hotfix-1.2.1
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Angular/">Angular</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Life/">Life</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Angular/">Angular</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Database/">Database</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Life/">Life</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -669,7 +741,7 @@ git branch -d hotfix-1.2.1
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Angular/" style="font-size: 13.33px;">Angular</a> <a href="/tags/Git/" style="font-size: 20px;">Git</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Javascript/" style="font-size: 16.67px;">Javascript</a> <a href="/tags/Life/" style="font-size: 10px;">Life</a>
+      <a href="/tags/Angular/" style="font-size: 13.33px;">Angular</a> <a href="/tags/Database/" style="font-size: 10px;">Database</a> <a href="/tags/Git/" style="font-size: 20px;">Git</a> <a href="/tags/HTML/" style="font-size: 10px;">HTML</a> <a href="/tags/Javascript/" style="font-size: 16.67px;">Javascript</a> <a href="/tags/Life/" style="font-size: 10px;">Life</a>
     </div>
   </div>
 
@@ -678,7 +750,7 @@ git branch -d hotfix-1.2.1
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -688,6 +760,10 @@ git branch -d hotfix-1.2.1
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2016/08/10/SoftDelete与UniqueIndex的冲突/">SoftDelete与UniqueIndex的冲突</a>
+          </li>
         
           <li>
             <a href="/2016/08/10/回滚git的提交和push/">回滚git的提交和push</a>
@@ -703,10 +779,6 @@ git branch -d hotfix-1.2.1
         
           <li>
             <a href="/2016/07/19/ngChecked-Directive/">ngChecked Directive</a>
-          </li>
-        
-          <li>
-            <a href="/2016/01/11/talk-about-life/">小谈生活</a>
           </li>
         
       </ul>
