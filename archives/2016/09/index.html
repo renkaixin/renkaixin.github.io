@@ -3,33 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Javascript判断当前页面/标签是否正在被用户浏览 | Easy &amp; Breezy</title>
+  <title>Archives: 2016/9 | Easy &amp; Breezy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="W3C规范规定了PageVisibility API用以帮助人们判断当前页面/标签是否正在被用户浏览（即页面是否可见），当页面隐藏和现实间切换时，触发visibilitychange事件，通过监听这一事件，可以决策当前页面的行为。
-(function() {
-  var hidden = &amp;quot;hidden&amp;quot;;
-
-  // Standards:
-  if (hidden in do">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Javascript判断当前页面/标签是否正在被用户浏览">
-<meta property="og:url" content="http://renhao.me/2015/12/30/introduction-to-page-visibility-API/index.html">
+  <meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Easy & Breezy">
+<meta property="og:url" content="http://renhao.me/archives/2016/09/index.html">
 <meta property="og:site_name" content="Easy & Breezy">
-<meta property="og:description" content="W3C规范规定了PageVisibility API用以帮助人们判断当前页面/标签是否正在被用户浏览（即页面是否可见），当页面隐藏和现实间切换时，触发visibilitychange事件，通过监听这一事件，可以决策当前页面的行为。
-(function() {
-  var hidden = &amp;quot;hidden&amp;quot;;
-
-  // Standards:
-  if (hidden in do">
-<meta property="og:updated_time" content="2015-12-30T11:25:37.000Z">
+<meta property="og:description">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Javascript判断当前页面/标签是否正在被用户浏览">
-<meta name="twitter:description" content="W3C规范规定了PageVisibility API用以帮助人们判断当前页面/标签是否正在被用户浏览（即页面是否可见），当页面隐藏和现实间切换时，触发visibilitychange事件，通过监听这一事件，可以决策当前页面的行为。
-(function() {
-  var hidden = &amp;quot;hidden&amp;quot;;
-
-  // Standards:
-  if (hidden in do">
+<meta name="twitter:title" content="Easy & Breezy">
+<meta name="twitter:description">
   
     <link rel="alternative" href="/atom.xml" title="Easy &amp; Breezy" type="application/atom+xml">
   
@@ -81,102 +65,39 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-introduction-to-page-visibility-API" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/12/30/introduction-to-page-visibility-API/" class="article-date">
-  <time datetime="2015-12-30T07:31:25.000Z" itemprop="datePublished">2015-12-30</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+        <section id="main">
   
-    <h1 class="article-title" itemprop="name">
-      Javascript判断当前页面/标签是否正在被用户浏览
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2016" class="archive-year">2016</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2016/09/03/Git提交自动部署/" class="archive-article-date">
+  <time datetime="2016-09-03T09:59:24.000Z" itemprop="datePublished">Sep 3</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2016/09/03/Git提交自动部署/">Git提交自动部署</a>
     </h1>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="http://www.w3.org/TR/page-visibility/" target="_blank" rel="external">W3C</a>规范规定了<a href="https://developer.mozilla.org/en-US/docs/Web/API/Page_Visibility_API" target="_blank" rel="external">PageVisibility API</a>用以帮助人们判断当前页面/标签是否正在被用户浏览（即页面是否可见），当页面隐藏和现实间切换时，触发visibilitychange事件，通过监听这一事件，可以决策当前页面的行为。</p>
-<pre><code class="Javascript">(function() {
-  var hidden = &quot;hidden&quot;;
-
-  // Standards:
-  if (hidden in document)
-    document.addEventListener(&quot;visibilitychange&quot;, onchange);
-  else if ((hidden = &quot;mozHidden&quot;) in document)
-    document.addEventListener(&quot;mozvisibilitychange&quot;, onchange);
-  else if ((hidden = &quot;webkitHidden&quot;) in document)
-    document.addEventListener(&quot;webkitvisibilitychange&quot;, onchange);
-  else if ((hidden = &quot;msHidden&quot;) in document)
-    document.addEventListener(&quot;msvisibilitychange&quot;, onchange);
-  // IE 9 and lower:
-  else if (&quot;onfocusin&quot; in document)
-    document.onfocusin = document.onfocusout = onchange;
-  // All others:
-  else
-    window.onpageshow = window.onpagehide
-    = window.onfocus = window.onblur = onchange;
-
-  function onchange (evt) {
-    var v = &quot;visible&quot;, h = &quot;hidden&quot;,
-        evtMap = {
-          focus:v, focusin:v, pageshow:v, blur:h, focusout:h, pagehide:h
-        };
-
-    evt = evt || window.event;
-    if (evt.type in evtMap)
-      document.body.className = evtMap[evt.type];
-    else
-      document.body.className = this[hidden] ? &quot;hidden&quot; : &quot;visible&quot;;
-  }
-
-  // set the initial state (but only if browser supports the Page Visibility API)
-  if( document[hidden] !== undefined )
-    onchange({type: document[hidden] ? &quot;blur&quot; : &quot;focus&quot;});
-})();
-</code></pre>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://renhao.me/2015/12/30/introduction-to-page-visibility-API/" data-id="cisn0qgm6000s3lcrrnz8149u" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/">HTML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
-
-    </footer>
+    </header>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2016/01/01/bootstrap-modal-angular-directeves/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          把Bootstrap的Modal组件封装成Angular的Directive
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2015/07/14/mynewpost/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Git分支规划的最佳实践</div>
-    </a>
-  
-</nav>
-
-  
 </article>
-
+  
+  
+    </div></section>
+  
 </section>
         
           <aside id="sidebar">

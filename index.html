@@ -67,6 +67,58 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Git提交自动部署" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/09/03/Git提交自动部署/" class="article-date">
+  <time datetime="2016-09-03T09:59:24.000Z" itemprop="datePublished">2016-09-03</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/03/Git提交自动部署/">Git提交自动部署</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="问题：">问题：</h3><p>通常情况Git都被用作版本控制, 但何不考虑当Git Push到远端Repo后自动发布到线上环境?</p>
+<h3 id="方案:">方案:</h3><p>Git hooks是一种简单的解决方案, 配置相应的命令到对应的钩子上,可以实现自动发布。<br>当远端Repo完整接收到Push后,会触发post-receive事件,调用对应的钩子文件,那我们接下来创建这个钩子。</p>
+<pre><code class="bash">cd repo/foo.git
+cd hooks/
+touch post-receive
+</code></pre>
+<p>当在某一Git目录下执行命令时候, Git默认work-tree和git-dir都是当前目录。<br>此时我们需要在钩子命令中显示定义线上服务的根目录和Git仓库的目录</p>
+<pre><code class="bash">git --work-tree=/var/www/site --git-dir=/repo/foo.git checkout -f
+</code></pre>
+<p>此处执行<code>checkout</code>命令, 强制用<code>git-dir</code>的文件覆盖<code>work-tree</code>的文件</p>
+<p>客户端执行:</p>
+<pre><code class="bash">git push origin
+</code></pre>
+<p>文件会自动发布到<code>/var/www/site</code>目录</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://renhao.me/2016/09/03/Git提交自动部署/" data-id="cisn0qgkx00063lcrzd58783i" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-SoftDelete与UniqueIndex的冲突" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/08/10/SoftDelete与UniqueIndex的冲突/" class="article-date">
@@ -127,7 +179,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://renhao.me/2016/08/10/SoftDelete与UniqueIndex的冲突/" data-id="cirpzijyt0008pocryhlvc8og" class="article-share-link">Share</a>
+      <a data-url="http://renhao.me/2016/08/10/SoftDelete与UniqueIndex的冲突/" data-id="cisn0qgl5000b3lcroljhndaf" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Database/">Database</a></li></ul>
@@ -176,7 +228,7 @@ git push origin -f
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://renhao.me/2016/08/10/回滚git的提交和push/" data-id="cirpzijyr0006pocrutcxg8aq" class="article-share-link">Share</a>
+      <a data-url="http://renhao.me/2016/08/10/回滚git的提交和push/" data-id="cisn0qgl300093lcr3ovbcbnn" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>
@@ -234,7 +286,7 @@ git reset --hard 4da72e5
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://renhao.me/2016/08/02/用Git迁移不同分支的Commit/" data-id="cirpzijyv000bpocrwqiedm71" class="article-share-link">Share</a>
+      <a data-url="http://renhao.me/2016/08/02/用Git迁移不同分支的Commit/" data-id="cisn0qglb000e3lcrq4v77qt0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>
@@ -295,7 +347,7 @@ git stash drop [&lt;stash&gt;] 删除某一stash
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://renhao.me/2016/07/24/用Git-Stash-临时储藏手头的变更/" data-id="cirpzijyw000dpocr7xn4vu1x" class="article-share-link">Share</a>
+      <a data-url="http://renhao.me/2016/07/24/用Git-Stash-临时储藏手头的变更/" data-id="cisn0qgli000g3lcrkpnqqpm9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>
@@ -353,7 +405,7 @@ git stash drop [&lt;stash&gt;] 删除某一stash
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://renhao.me/2016/07/19/ngChecked-Directive/" data-id="cirpzijyy000fpocrys9fjopm" class="article-share-link">Share</a>
+      <a data-url="http://renhao.me/2016/07/19/ngChecked-Directive/" data-id="cisn0qglo000i3lcrwp2qghfi" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Angular/">Angular</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
@@ -396,7 +448,7 @@ git stash drop [&lt;stash&gt;] 删除某一stash
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://renhao.me/2016/01/11/talk-about-life/" data-id="cirpzijz3000jpocrack2zpw5" class="article-share-link">Share</a>
+      <a data-url="http://renhao.me/2016/01/11/talk-about-life/" data-id="cisn0qglw000m3lcrzvu445d5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Life/">Life</a></li></ul>
@@ -499,7 +551,7 @@ git stash drop [&lt;stash&gt;] 删除某一stash
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://renhao.me/2016/01/01/bootstrap-modal-angular-directeves/" data-id="cirpzijz6000mpocrvvbeluxo" class="article-share-link">Share</a>
+      <a data-url="http://renhao.me/2016/01/01/bootstrap-modal-angular-directeves/" data-id="cisn0qgm2000p3lcraexmzkmj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Angular/">Angular</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
@@ -576,7 +628,7 @@ git stash drop [&lt;stash&gt;] 删除某一stash
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://renhao.me/2015/12/30/introduction-to-page-visibility-API/" data-id="cirpzijzc000ppocr6wkb4w2z" class="article-share-link">Share</a>
+      <a data-url="http://renhao.me/2015/12/30/introduction-to-page-visibility-API/" data-id="cisn0qgm6000s3lcrrnz8149u" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/">HTML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
@@ -709,7 +761,7 @@ git branch -d hotfix-1.2.1
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://renhao.me/2015/07/14/mynewpost/" data-id="cirpzijyi0003pocrq7jjkiln" class="article-share-link">Share</a>
+      <a data-url="http://renhao.me/2015/07/14/mynewpost/" data-id="cisn0qgkn00033lcro9wmpjn9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>
@@ -732,7 +784,7 @@ git branch -d hotfix-1.2.1
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Angular/">Angular</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Database/">Database</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Life/">Life</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Angular/">Angular</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Database/">Database</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/">Git</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML/">HTML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Life/">Life</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -750,7 +802,7 @@ git branch -d hotfix-1.2.1
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -760,6 +812,10 @@ git branch -d hotfix-1.2.1
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2016/09/03/Git提交自动部署/">Git提交自动部署</a>
+          </li>
         
           <li>
             <a href="/2016/08/10/SoftDelete与UniqueIndex的冲突/">SoftDelete与UniqueIndex的冲突</a>
@@ -775,10 +831,6 @@ git branch -d hotfix-1.2.1
         
           <li>
             <a href="/2016/07/24/用Git-Stash-临时储藏手头的变更/">用Git Stash 临时储藏手头的变更</a>
-          </li>
-        
-          <li>
-            <a href="/2016/07/19/ngChecked-Directive/">ngChecked Directive</a>
           </li>
         
       </ul>
