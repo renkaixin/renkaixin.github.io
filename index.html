@@ -67,6 +67,63 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-semver" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/09/23/semver/" class="article-date">
+  <time datetime="2016-09-23T12:23:37.000Z" itemprop="datePublished">2016-09-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/23/semver/">Semantic Versioning</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="问题">问题</h3><p>开发过程必然会引用第三方的框架、标准、工具，从而形成了依赖。但第三方的框架、标准、<br>工具本身也会迭代和发展，当它们发布新版本的时候，如何决定是否更新依赖？</p>
+<h3 id="解决方案">解决方案</h3><p>语义化版本的核心观点是必须对版本号分区：Major.Minor.Patch</p>
+<ul>
+<li>Major 包含了不可向下兼容的API更改</li>
+<li>Minor 包含了可以向下兼容的Feature</li>
+<li>Patch 包含了可以向下兼容的Bugfix</li>
+</ul>
+<p>其余包括预览版或build信息都可以扩展到这三个区之后。</p>
+<h3 id="原则">原则</h3><ol>
+<li>软件必须包含公共的API，它们应该清晰地存在于代码或文档中。</li>
+<li>软件的版本号必须遵循X.Y.Z这个范式。X, Y, Z只能是不包含前导0的正整数。每一项都应该按自然数顺序向上递增。</li>
+<li>一旦一个版本形成，它的代码将必须不能被修改。任何对代码的修改都必须被当作一个新版本。</li>
+<li>Major版本号为0的时候，代表软件的状态是最初始的开发状态，任何变更都可能发生，此时的公共API是不稳定的。</li>
+<li>当1.0.0版本正式发布的时候，这个软件第一次拥有了稳定的公共API。后续版本的增长，都将依据这些公共API。</li>
+<li>当修改若干向下兼容的bug时候，Patch版本号可以向前前进1步。</li>
+<li>当公共API引入了新的，向下兼容的功能时，必须前进1步Minor版本号；<br>当某个公共API被标记为deprecated时候，必须前进1步Minor版本号；<br>当内部代码进行了许多的新功能和改进时候，或许可以前进1步Minor版本号；<br>当Patch打的足够多的时候，或许可以前进1步Minor版本号；<br>当Minor版本号前进时候，Patch版本号必须清零。</li>
+<li>当修改了某个公共API并且不向下兼容时，必须前进1步Major版本号;<br>当Minor足够多的时候，或许可以前进1步Minor版本号；<br>当Major版本号前进时候，Minor和Patch版本号必须清零。</li>
+<li>一个Pre-release软件的版本号可能包含了由连字符-链接的一组由.分割的ID，这组ID必须满足[0-9A-Za-z-]，<br>这组ID必须不能为空，如果是数字不能有前导0，Pre-release版本意味着这个软件并非稳定而且可能无法达到兼容的需求.<br>范例：1.0.0-alpha、1.0.0-alpha.1、1.0.0-0.3.7、1.0.0-x.7.z.92。</li>
+<li>版本编译信息可以被标注在修订版或先行版本号之后，先加上一个加号再加上一连串以句点分隔的标识符号来修饰。<br>标识符号必须由ASCII的英数字和连接号[0-9A-Za-z-]组成，且禁止留白。当判断版本的优先层级时，版本编译信息可被忽略。<br>因此当两个版本只有在版本编译信息有差别时，属于相同的优先层级。范例：1.0.0-alpha+001、1.0.0+20130313144700、1.0.0-beta+exp.sha.5114f85。</li>
+<li>必须要将版本号区分为Major.Minor.Patch, 版本号必须从前向后比较， 1.0.0 &lt; 2.0.0 &lt; 2.1.0 &lt; 2.1.1<br>当Major.Minor.Patch完全相同时，Pre-release版本是低于对应的正式版本的，即: 1.0.0-alpha &lt; 1.0.0;<br>当两个同是Pre-release的版本比较时候，如果同是数字，则比较大小，如果同是字母，则逐位比较ASCII编码顺序。<br>数字的排序低于字母，如果之前的所有版本号都相同，那么长的版本号优先级高于短的。<br>例子：1.0.0-alpha &lt; 1.0.0-alpha.1 &lt; 1.0.0-alpha.beta &lt; 1.0.0-beta &lt; 1.0.0-beta.2 &lt; 1.0.0-beta.11 &lt; 1.0.0-rc.1 &lt; 1.0.0.</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://renhao.me/2016/09/23/semver/" data-id="citfr49cl0006gicrgi56myxa" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Git提交自动部署" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/09/03/Git提交自动部署/" class="article-date">
@@ -107,7 +164,7 @@ touch post-receive
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://renhao.me/2016/09/03/Git提交自动部署/" data-id="cisn0qgkx00063lcrzd58783i" class="article-share-link">Share</a>
+      <a data-url="http://renhao.me/2016/09/03/Git提交自动部署/" data-id="citfr49cm0007gicr3lybynh2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>
@@ -179,7 +236,7 @@ touch post-receive
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://renhao.me/2016/08/10/SoftDelete与UniqueIndex的冲突/" data-id="cisn0qgl5000b3lcroljhndaf" class="article-share-link">Share</a>
+      <a data-url="http://renhao.me/2016/08/10/SoftDelete与UniqueIndex的冲突/" data-id="citfr49cp000bgicrq2tp0amq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Database/">Database</a></li></ul>
@@ -228,7 +285,7 @@ git push origin -f
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://renhao.me/2016/08/10/回滚git的提交和push/" data-id="cisn0qgl300093lcr3ovbcbnn" class="article-share-link">Share</a>
+      <a data-url="http://renhao.me/2016/08/10/回滚git的提交和push/" data-id="citfr49co0009gicr09fa72h6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>
@@ -286,7 +343,7 @@ git reset --hard 4da72e5
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://renhao.me/2016/08/02/用Git迁移不同分支的Commit/" data-id="cisn0qglb000e3lcrq4v77qt0" class="article-share-link">Share</a>
+      <a data-url="http://renhao.me/2016/08/02/用Git迁移不同分支的Commit/" data-id="citfr49cr000egicr18p3z5u7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>
@@ -347,7 +404,7 @@ git stash drop [&lt;stash&gt;] 删除某一stash
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://renhao.me/2016/07/24/用Git-Stash-临时储藏手头的变更/" data-id="cisn0qgli000g3lcrkpnqqpm9" class="article-share-link">Share</a>
+      <a data-url="http://renhao.me/2016/07/24/用Git-Stash-临时储藏手头的变更/" data-id="citfr49ct000ggicr4gxk5e66" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>
@@ -405,7 +462,7 @@ git stash drop [&lt;stash&gt;] 删除某一stash
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://renhao.me/2016/07/19/ngChecked-Directive/" data-id="cisn0qglo000i3lcrwp2qghfi" class="article-share-link">Share</a>
+      <a data-url="http://renhao.me/2016/07/19/ngChecked-Directive/" data-id="citfr49cw000igicrtwjqzdpd" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Angular/">Angular</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
@@ -448,7 +505,7 @@ git stash drop [&lt;stash&gt;] 删除某一stash
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://renhao.me/2016/01/11/talk-about-life/" data-id="cisn0qglw000m3lcrzvu445d5" class="article-share-link">Share</a>
+      <a data-url="http://renhao.me/2016/01/11/talk-about-life/" data-id="citfr49d4000mgicrszov13jp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Life/">Life</a></li></ul>
@@ -551,7 +608,7 @@ git stash drop [&lt;stash&gt;] 删除某一stash
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://renhao.me/2016/01/01/bootstrap-modal-angular-directeves/" data-id="cisn0qgm2000p3lcraexmzkmj" class="article-share-link">Share</a>
+      <a data-url="http://renhao.me/2016/01/01/bootstrap-modal-angular-directeves/" data-id="citfr49d7000pgicrv4jzbmfo" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Angular/">Angular</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
@@ -628,7 +685,7 @@ git stash drop [&lt;stash&gt;] 删除某一stash
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://renhao.me/2015/12/30/introduction-to-page-visibility-API/" data-id="cisn0qgm6000s3lcrrnz8149u" class="article-share-link">Share</a>
+      <a data-url="http://renhao.me/2015/12/30/introduction-to-page-visibility-API/" data-id="citfr49da000sgicrlekbxr8h" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/">HTML</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Javascript/">Javascript</a></li></ul>
@@ -640,139 +697,10 @@ git stash drop [&lt;stash&gt;] 删除某一stash
 
 
   
-    <article id="post-mynewpost" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/07/14/mynewpost/" class="article-date">
-  <time datetime="2015-07-14T08:05:59.000Z" itemprop="datePublished">2015-07-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/14/mynewpost/">Git分支规划的最佳实践</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>在使用Git进行版本控制时，伴随开发生命周期，需要维护很多的分支，如何创建这些分支并明确命名，是一个头疼的问题，本文总结了Git最常用分支的名称和使用场景。</p>
-<ul>
-<li><strong>master</strong> 主要分支 - 主线分支，HEAD指向的代码与稳定的生产环境代码同步</li>
-<li><strong>develop</strong> 主要分支 - 开发线分支，HEAD指向的代码是最新的开发进度，代表了面向下一版本release的最新代码更改，当开发线的代码到达稳定状态并可以发布release时，develop线的代码将被合并到master中，并以一个新的release版本号tag</li>
-<li><strong>feature</strong> 辅助分支 - 新功能开发分支 伴随一个新功能开发而存在</li>
-<li><strong>release</strong> 辅助分支 - 版本发布分支 在版本准备发布和发布成功之间存在的临时分支，代表了即将发布的代码状态。</li>
-<li><strong>hotfix</strong> 辅助分支 - 热修补分支 生产环境出现bug需要紧急修复时候创建的</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">分支名称</th>
-<th style="text-align:center">分支类型</th>
-<th style="text-align:center">从何处检出</th>
-<th style="text-align:center">合并到何处</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">master</td>
-<td style="text-align:center">主要</td>
-<td style="text-align:center">-</td>
-<td style="text-align:center">-</td>
-</tr>
-<tr>
-<td style="text-align:center">develop</td>
-<td style="text-align:center">主要</td>
-<td style="text-align:center">-</td>
-<td style="text-align:center">-</td>
-</tr>
-<tr>
-<td style="text-align:center">feature</td>
-<td style="text-align:center">辅助</td>
-<td style="text-align:center">develop</td>
-<td style="text-align:center">develop</td>
-</tr>
-<tr>
-<td style="text-align:center">release</td>
-<td style="text-align:center">辅助</td>
-<td style="text-align:center">develop</td>
-<td style="text-align:center">develop &amp; master</td>
-</tr>
-<tr>
-<td style="text-align:center">hotfix</td>
-<td style="text-align:center">辅助</td>
-<td style="text-align:center">master</td>
-<td style="text-align:center">develop &amp; master</td>
-</tr>
-</tbody>
-</table>
-<h3 id="feature_branches_-_新功能分支">feature branches - 新功能分支</h3><p>新功能分支是branch off from develop，它的生命周期伴随着开发某一特定新功能，新功能开发完成后，将feature分支merge到develop中</p>
-<h4 id="创建新功能分支">创建新功能分支</h4><pre><code class="bash">git checkout -b newfeature develop
-</code></pre>
-<h4 id="合并新功能分支">合并新功能分支</h4><pre><code class="bash">git checkout develop
-git merge --no-ff newfeature
-git branch -d newfeature
-git push orign develop
-</code></pre>
-<h3 id="release_branches_-_新版本分支">release branches - 新版本分支</h3><p>新版本分支创建于生产环境最新release发布前夕，从develop分支中checkout出来，此时允许在release分支上进行小规模的bugfix并准备版本号等信息。而此时develop分支可以继续工作，接收下一个版本的代码改动。</p>
-<h4 id="新版本分支创建时机">新版本分支创建时机</h4><p>新版本分支创建于develop分支的状态已经和预期新版本中的状态一致的时刻。在此时，即将到来的新版本才会根据规则，获取到自己的版本号，而在此之前develop分支中的下一版本号都为next。</p>
-<h4 id="创建新版本分支">创建新版本分支</h4><pre><code class="bash">git checkout -b release-1.2.0 develop
-./some-shell-to-change-file-version-number.sh
-git commit -a -m &quot;Bumped version number to 1.2.0&quot;
-</code></pre>
-<h4 id="合并新版本分支">合并新版本分支</h4><p>当新版本在进行细微调整后成为真正的新版本时，将会通过以下三步完成一个新版本</p>
-<ol>
-<li>将新版本分支合并到master分支中，并对master分支打上tag方便引用（<strong>master分支原则上只接受新版本的merge</strong>）</li>
-<li>将新版本分支合并到develop分支中，将新版本发布期的更改添加到develop代码中</li>
-<li>删除develop分支<br>```bash<h1 id="提交新版本到master中，真正的新版本被创建">提交新版本到master中，真正的新版本被创建</h1>git checkout master<br>git merge —no-ff release-1.2.0<br>git tag -a 1.2.0</li>
-</ol>
-<h1 id="新版本更改同步到develop中">新版本更改同步到develop中</h1><p>git checkout develop<br>git merge —no-ff release-1.2.0</p>
-<h1 id="删除新版本分支">删除新版本分支</h1><p>git branch -d release-1.2.0</p>
-<pre><code>### hotfix branches - 热修补分支
-当生产环境出现重大问题时，从master上直接checkout，此时可以对master的版本增加一个小版本号用以修复这个bug。此时其他开发人员可以继续在develop分支上工作而不必受到影响。问题修改完成后，将会首先合并热修补分支到master分支中修复生产环境问题，进而合并到develop分支中（**如果存在release分支，应先合并到release中，再由release合并到develop中，但如果develop分支等不及这个bug的修复，可以同时合并到develop分支中**）
-####创建热修补分支
-```bash
-#假设出现问题的master版本是1.2.0
-git checkout -b hotfix-1.2.1 master
-./some-shell-to-change-file-version-number.sh
-git commit -a -m &quot;Bumped version number to 1.2.1&quot;
-
-#修复完成后
-git commit -m &quot;Fixed severe production problem&quot;
-</code></pre><h4 id="合并热修补分支">合并热修补分支</h4><pre><code class="bash">#首先将hotfix合并到master中，解决问题
-git checkout master
-git merge --no-ff hotfix-1.2.1
-git tag -a 1.2.1
-
-#将hotfix合并到develop中
-git checkout develop
-git merge --no-ff hotfix-1.2.1
-
-#删除hotfix分支
-git branch -d hotfix-1.2.1
-</code></pre>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://renhao.me/2015/07/14/mynewpost/" data-id="cisn0qgkn00033lcro9wmpjn9" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    </nav>
   
 </section>
         
@@ -802,7 +730,7 @@ git branch -d hotfix-1.2.1
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/01/">January 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/12/">December 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -812,6 +740,10 @@ git branch -d hotfix-1.2.1
     <h3 class="widget-title">Recents</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2016/09/23/semver/">Semantic Versioning</a>
+          </li>
         
           <li>
             <a href="/2016/09/03/Git提交自动部署/">Git提交自动部署</a>
@@ -827,10 +759,6 @@ git branch -d hotfix-1.2.1
         
           <li>
             <a href="/2016/08/02/用Git迁移不同分支的Commit/">用Git迁移不同分支的Commit</a>
-          </li>
-        
-          <li>
-            <a href="/2016/07/24/用Git-Stash-临时储藏手头的变更/">用Git Stash 临时储藏手头的变更</a>
           </li>
         
       </ul>
